@@ -56,7 +56,7 @@ const squareFree = (square) => {
     if (!(square instanceof Element)) {
         squareToCheck = getIdFromCoordinates(square)
     } 
-    if (squareToCheck.src === blankPath) {
+    if (squareToCheck.src === BLANK_PATH) {
         return true
     } 
 }
@@ -79,4 +79,28 @@ const getUniqueXYValues = (array) => {
    
      }
     return null   
+}
+
+
+const changeMessageStyle = (message) => {
+    message.style.position = "absolute";
+    message.style.margin = "auto";
+    message.style.left = "0";
+    message.style.right = "0";
+    message.style.top = "0";
+    message.style.bottom = "0";
+    message.style.textAlign = "center";
+    message.style.fontSize = "30px";
+    message.style.fontWeight = "600"
+    message.style.marginTop = "37%"
+
+
+}
+
+const showImage = (id) => {
+    id.style.visibility = "visible"
+}
+
+const hideImage = (id) => {
+    id.style.visibility = "hidden"
 }

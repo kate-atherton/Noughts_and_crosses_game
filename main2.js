@@ -1,29 +1,31 @@
-// global variables
-// - You need to create another js file called "utils.js" (short for utilities). In that file you should put
-// - all the functions I mark as "util"
-// - this basically keeps them out the way
-// - don't forget to reference the other js file in your html first
-
-
-// - any const with a primitive value that is declared at file level should use const casing eg. BLANK_PATH
-// - this just makes it clear that the value is kind of arbitrary and configurable
-// - So the path to the images for instance can be configured to change the image used --CONFUSED
-
-const circlePath = "circleImage.jpg" 
-const crossPath = "crossImage.jpg" 
-const blankPath = "file:///C:/Users/kate_/Coding/practice/javascript/noughtsAndCrosses/blankSquare.jpg"
+const CIRCLE_PATH = "circleImage.jpg" 
+const CROSS_PATH = "crossImage.jpg" 
+const BLANK_PATH = "file:///C:/Users/kate_/Coding/practice/javascript/noughtsAndCrosses/blankSquare.jpg"
+let computerPath  = CROSS_PATH
+let playerPath = CIRCLE_PATH
 const startButton = document.getElementById("start-button")
+const crossButton = document.getElementById("cross")
+const circleButton = document.getElementById("circle")
+const grid = document.getElementById("game-table")
+const gameArea = document.querySelector(".game-area")
+const whosTurn = document.querySelector(".whos-turn")
+const drawMessage = document.createElement("P"); 
+const lostMessage = document.createElement("P"); 
+const crossGo = document.querySelector("#cross-go")
+const circleGo = document.querySelector("#circle-go")
+const computerGo = crossGo;
+const playerGo = circleGo;
 let currentlyPlaying = false;
 let firstTurn = true;
-let circleArray = [];
-let crossArray = [];
+let playerArray = [];
+let computerArray = [];
 const middleSquare = {x: 1, y: 1}
 const gameSquares = [...document.querySelectorAll(".game-square")]
 
 
 //establish if circle or cross is one away from winning
-const twoOutOfThree = (crossOrCircleArray) => {  //is this name ok?
-    const findThirdSquare = (arr) => { //does this name also need to be descriptive?
+const twoOutOfThree = (compOrPlayerArray) => {  
+    const findThirdSquare = (arr) => { 
         //to establish if diagonal
         let countSameXYCoord = 0;
         let sameXYCoordArray = [];
@@ -102,16 +104,16 @@ const twoOutOfThree = (crossOrCircleArray) => {  //is this name ok?
     }
 
 
-    return findThirdSquare(crossOrCircleArray)
+    return findThirdSquare(compOrPlayerArray)
    
     } 
 
  
 
 //check if circle has an opportunity to fork
-const forkDilemma = (currentCircleArray) => { //is this name ok?
+const forkDilemma = (currentPlayerArray) => { 
     // check if x and y coordinates are both different to establish if potential fork
-    let forkArray = getUniqueXYValues(currentCircleArray) 
+    let forkArray = getUniqueXYValues(currentPlayerArray) 
 
     const getIntersectionCorner = (potentialForkArray) => {      
         const intersectionOptions = [{x: potentialForkArray[0].x , y: potentialForkArray[1].y}, {x: potentialForkArray[1].x , y: potentialForkArray[0].y}]
@@ -145,52 +147,55 @@ const forkDilemma = (currentCircleArray) => { //is this name ok?
 
 
 
-const makeCircle = (square) => {
-    square.src = circlePath
-    circleArray.push(getCoordsFromHtml(square))
+const makePlayerMove = (square) => {
+    square.src = playerPath
+    playerArray.push(getCoordsFromHtml(square))
 }
 
-const makeCross = (squareCoordinates) => {
+const makeComputerMove = (squareCoordinates) => {
     //convert back to ID -always sends through an object eg//{x: 1, y: 1}
     let squareId = getIdFromCoordinates(squareCoordinates)
-    squareId.src = crossPath
-    crossArray.push(squareCoordinates)
+    squareId.src = computerPath
+    computerArray.push(squareCoordinates)
 }
 
 
-const crossTurn = () => {
+const computerTurn = () => {
     if (isGameDraw()) {
         gameOver("draw") 
     }
     if (currentlyPlaying) {
+        showImage(computerGo)
         if (firstTurn) {
             if (squareFree(middleSquare)) {
-                makeCross(middleSquare)
+                makeComputerMove(middleSquare)
             } else {
-                makeCross(freeCornerSquare())
+                makeComputerMove(freeCornerSquare())
             }
             firstTurn = false
         }
      
-        else if (twoOutOfThree(crossArray) !== null) {
-            makeCross(twoOutOfThree(crossArray))
+        else if (twoOutOfThree(computerArray) !== null) {
+            makeComputerMove(twoOutOfThree(computerArray))
             gameOver()
         }
 
-        else if (twoOutOfThree(circleArray) !== null) {
-            makeCross(twoOutOfThree(circleArray))
+        else if (twoOutOfThree(playerArray) !== null) {
+            makeComputerMove(twoOutOfThree(playerArray))
         }
 
         
-        else if (forkDilemma(circleArray) !== null) {
-            makeCross(forkDilemma(circleArray))
+        else if (forkDilemma(playerArray) !== null) {
+            makeComputerMove(forkDilemma(playerArray))
         }
 
         else {
-            makeCross(freeCornerSquare())
+            makeComputerMove(freeCornerSquare())
         }
         
-        circleTurn() 
+        hideImage(computerGo)
+        showImage(playerGo)
+        playerTurn() 
     
     }
 }
@@ -222,17 +227,17 @@ const freeCornerSquare = () => {
 }
 
 
-let onCircleClick = ({target}) => {
-    makeCircle(target)
-    setTimeout(crossTurn, 1000) 
-    gameSquares.forEach(gameSquare => {gameSquare.removeEventListener("click", onCircleClick)})
+let onPlayerClick = ({target}) => {
+    makePlayerMove(target)
+    setTimeout(computerTurn, 1000) 
+    gameSquares.forEach(gameSquare => {gameSquare.removeEventListener("click", onPlayerClick)})
 }
 
 //apply onclick functionality to all squares. Log if square has been made x circle and assign box number to array
-const circleTurn = () => {
+const playerTurn = () => {
     gameSquares.forEach(gameSquare => {
         if (squareFree(gameSquare) && currentlyPlaying) {
-            gameSquare.addEventListener("click", onCircleClick)
+            gameSquare.addEventListener("click", onPlayerClick)
         }
     } 
     )
@@ -241,32 +246,62 @@ const circleTurn = () => {
 
 const startRound = () => {
     //make all srcs blank squares
-    gameSquares.forEach(gameSquare => gameSquare.src = blankPath)
-    circleArray = [];
-    crossArray = [];
+    grid.classList.remove("inactive")
+    gameSquares.forEach(gameSquare => gameSquare.src = BLANK_PATH)
+    playerArray = [];
+    computerArray = [];
     currentlyPlaying = true
     firstTurn = true;
-    circleTurn() 
+    whosTurn.style.visibility = "visible"
+    startButton.remove();
+    drawMessage.remove()
+    lostMessage.remove()
+    playerTurn() 
   }
 
 const gameOver = (status) => {
-    if (status === "draw") {
-      startButton.innerHTML = 'It\'s a draw! Play again?';
-    } else {
-      startButton.innerHTML = "Game over! Play again?"
+    if (status === "draw") {                     
+      drawMessage.innerHTML = "It\'s a draw!"; 
+      changeMessageStyle(drawMessage)               
+      gameArea.appendChild(drawMessage); 
+    } else {                
+      lostMessage.innerHTML = "Game over!";  
+      changeMessageStyle(lostMessage)            
+      gameArea.appendChild(lostMessage); 
     }
+    gameArea.appendChild(startButton)
+    startButton.innerHTML = "Play again"
     currentlyPlaying = false
+    grid.classList.add("inactive")
   }
 
 
 startButton.onclick = () => {
-    if (currentlyPlaying) {
-        startButton.innerHTML = "Oops, this game isn't over yet!"
-    } else {
-        startRound()
-        startButton.innerHTML = "Good luck!" 
-    }
-  }
+    startRound()
+}
 
+
+crossButton.onclick = () => {
+    if (!currentlyPlaying) {
+        computerPath = CIRCLE_PATH;
+        playerPath = CROSS_PATH;
+        computerGo = circleGo;
+        playerGo = crossGo;
+        crossButton.classList.add("active");
+        circleButton.classList.remove("active")
+    }
+    
+}
+
+circleButton.onclick = () => {
+    if (!currentlyPlaying) {
+        computerPath = CROSS_PATH;
+        playerPath = CIRCLE_PATH;
+        computerGo = crossGo;
+        playerGo = circleGo;
+        crossButton.classList.remove("active");
+        circleButton.classList.add("active")
+    }  
+}
 
 //maybe add x give up button?

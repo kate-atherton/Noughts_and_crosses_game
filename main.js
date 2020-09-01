@@ -14,6 +14,7 @@ let gameSquares = document.querySelectorAll(".game-square")
 
 const winningCombinations = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]] 
 
+
 //check if square is free
 const squareFree = (square) => {
     if (square.src === blankPath) {
@@ -21,6 +22,13 @@ const squareFree = (square) => {
     } 
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+}
 // //function to make square turn into circle
 const makeCircle = (square) => {
     square.src = circlePath
@@ -48,21 +56,26 @@ const crossTurn = () => {
         }
     
         else if (twoOutOfThree(crossArray) !== null) {
-            console.log("two out of three cross")
             makeCross(document.getElementById(twoOutOfThree(crossArray)))
         }
     
         //both happen in one go!
         else if (twoOutOfThree(circleArray) !== null) {
-            console.log("two out of three circle")
             makeCross(document.getElementById(twoOutOfThree(circleArray)))
         }
     
+
+        //add in option for fork
+        else if (preventFork() !== null) {
+            console.log("preventing fork")
+            makeCross(document.getElementById(preventFork()))
+        }
+
+
         else { 
-            console.log("free corner square")
             makeCross(document.getElementById(freeCornerSquare()))
         } 
-        console.log("Moving onto circle turn")
+        
         if (gameWon()) {
             gameOver() 
         }
@@ -95,7 +108,6 @@ const gameDraw = () => {
 
 //check if need to put a cross in third of winning row. returns third square if so
 const twoOutOfThree =  (array) => {  
-    console.log("going through array")
     const isInArray = (value) => array.includes(value) 
     let count = 0
     for (let i=0; i < winningCombinations.length; i++){
@@ -107,7 +119,7 @@ const twoOutOfThree =  (array) => {
         if (count === 2) {
             let thirdSquare = winningCombinations[i].filter(val => !array.includes(val));
             let thirdSquareId = "square" + thirdSquare.toString() 
-            if  (document.getElementById(thirdSquareId).src === blankPath) {
+            if  (squareFree(document.getElementById(thirdSquareId))) {
                 return thirdSquareId               
             } else {
                 count = 0
@@ -122,10 +134,39 @@ const twoOutOfThree =  (array) => {
 }
 
 
+
+const forkCombinations = [
+    {corner:0,
+     array:[3,1]},
+    {corner:2,
+     array:[5,1]},
+    {corner:6,
+     array:[3,7]},
+    {corner:8,
+     array:[5,7]},
+]
+
+const preventFork = () => {
+    const isInArray = (value) => circleArray.includes(value)
+    for (let i=0; i < forkCombinations.length; i++){
+        const myObject = forkCombinations[i]
+        let cornerSquareId = "square" + myObject.corner.toString()
+        if (squareFree(document.getElementById(cornerSquareId)) && myObject.array.every(isInArray)) {
+            console.log(cornerSquareId)
+            return cornerSquareId
+        }
+    
+    }
+    return null
+}
+  
+
+
 const freeCornerSquare = () => {
     let cornerSquares = [0, 2, 6, 8]
-    for (let i=0; i < cornerSquares.length;i++) {
-        let squareId = "square" + cornerSquares[i].toString() 
+    let randomCornerSquares = shuffleArray(cornerSquares)
+    for (let i=0; i < randomCornerSquares.length;i++) {
+        let squareId = "square" + randomCornerSquares[i].toString() 
         if (squareFree(document.getElementById(squareId))) {
             return squareId;
         }
@@ -157,6 +198,7 @@ const startRound = () => {
     circleArray = [];
     crossArray = [];
     currentlyPlaying = true
+    firstTurn = true;
     circleTurn() 
   }
 
