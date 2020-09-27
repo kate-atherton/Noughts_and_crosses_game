@@ -1,3 +1,5 @@
+const model = initialiseModel();
+
 const CIRCLE_PATH = "img/circleImage.jpg";
 const CROSS_PATH = "img/crossImage.jpg";
 const BLANK_PATH = "img/blankSquare.jpg";
@@ -15,12 +17,16 @@ const crossGo = document.querySelector("#cross-go");
 const circleGo = document.querySelector("#circle-go");
 const computerGo = crossGo;
 const playerGo = circleGo;
-let currentlyPlaying = false;
 let firstTurn = true;
 let playerArray = [];
 let computerArray = [];
 const middleSquare = { x: 1, y: 1 };
 const gameSquares = [...document.querySelectorAll(".game__square")];
+
+//get square coordinates from gamesquares in html
+const squareCoordinates = gameSquares.map((gameSquare) => {
+  return getCoordsFromHtml(gameSquare);
+});
 
 //establish if circle or cross is one away from winning
 const twoOutOfThree = (compOrPlayerArray) => {
@@ -164,7 +170,7 @@ const computerTurn = () => {
   if (isGameDraw()) {
     gameOver("draw");
   }
-  if (currentlyPlaying) {
+  if (model.checkCurrentlyPlaying()) {
     showImage(computerGo);
     if (firstTurn) {
       if (squareFree(middleSquare)) {
@@ -229,7 +235,7 @@ let onPlayerClick = ({ target }) => {
 //apply onclick functionality to all squares. Log if square has been made x circle and assign box number to array
 const playerTurn = () => {
   gameSquares.forEach((gameSquare) => {
-    if (squareFree(gameSquare) && currentlyPlaying) {
+    if (squareFree(gameSquare) && model.checkCurrentlyPlaying()) {
       gameSquare.addEventListener("click", onPlayerClick);
     }
   });
@@ -241,7 +247,7 @@ const startRound = () => {
   gameSquares.forEach((gameSquare) => (gameSquare.src = BLANK_PATH));
   playerArray = [];
   computerArray = [];
-  currentlyPlaying = true;
+  model.updateCurrentlyPlaying(true);
   firstTurn = true;
   whosTurn.style.visibility = "visible";
   gameArea.style.backgroundColor = "none";
@@ -263,7 +269,7 @@ const gameOver = (status) => {
   }
   gameArea.appendChild(startButton);
   startButton.innerHTML = "Play again";
-  currentlyPlaying = false;
+  model.updateCurrentlyPlaying(false);
   grid.classList.add("inactive");
 };
 
@@ -272,7 +278,7 @@ startButton.onclick = () => {
 };
 
 crossButton.onclick = () => {
-  if (!currentlyPlaying) {
+  if (model.checkCurrentlyPlaying()) {
     computerPath = CIRCLE_PATH;
     playerPath = CROSS_PATH;
     computerGo = circleGo;
@@ -283,7 +289,7 @@ crossButton.onclick = () => {
 };
 
 circleButton.onclick = () => {
-  if (!currentlyPlaying) {
+  if (model.checkCurrentlyPlaying()) {
     computerPath = CROSS_PATH;
     playerPath = CIRCLE_PATH;
     computerGo = crossGo;

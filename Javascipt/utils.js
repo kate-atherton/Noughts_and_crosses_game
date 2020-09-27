@@ -40,11 +40,6 @@ const getIdFromCoordinates = (coordinates) => {
   return document.getElementById("square" + coordinates.x + coordinates.y);
 };
 
-//get square coordinates from gamesquares in html
-const squareCoordinates = gameSquares.map((gameSquare) => {
-  return getCoordsFromHtml(gameSquare);
-});
-
 //randomize order of items in an array
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
