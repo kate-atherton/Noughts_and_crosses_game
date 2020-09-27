@@ -5,14 +5,32 @@ const initialiseModel = () => {
   //return an object that contains all the functions
 
   let currentlyPlaying = false;
+  let playerArray = [];
+  let computerArray = [];
 
   const checkCurrentlyPlaying = () => currentlyPlaying;
   const updateCurrentlyPlaying = (value) => {
     currentlyPlaying = value;
   };
 
+  const resetPlayerArrays = () => {
+    playerArray = [];
+    computerArray = [];
+  };
+
+  const addCoordsToArray = (square, array) => {
+    array.push(getCoordsFromHtml(square));
+  };
+
+  const readPlayerArray = () => [...playerArray];
+  const readComputerArray = () => [...computerArray];
+
   return {
     checkCurrentlyPlaying,
     updateCurrentlyPlaying,
+    resetPlayerArrays,
+    addCoordsToArray,
+    readPlayerArray,
+    readComputerArray,
   };
 };

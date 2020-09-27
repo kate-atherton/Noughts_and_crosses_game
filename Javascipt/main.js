@@ -18,8 +18,6 @@ const circleGo = document.querySelector("#circle-go");
 const computerGo = crossGo;
 const playerGo = circleGo;
 let firstTurn = true;
-let playerArray = [];
-let computerArray = [];
 const middleSquare = { x: 1, y: 1 };
 const gameSquares = [...document.querySelectorAll(".game__square")];
 
@@ -245,8 +243,7 @@ const startRound = () => {
   //make all srcs blank squares
   grid.classList.remove("inactive");
   gameSquares.forEach((gameSquare) => (gameSquare.src = BLANK_PATH));
-  playerArray = [];
-  computerArray = [];
+  model.resetPlayerArrays();
   model.updateCurrentlyPlaying(true);
   firstTurn = true;
   whosTurn.style.visibility = "visible";
