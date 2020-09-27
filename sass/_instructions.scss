@@ -1,0 +1,71 @@
+
+.instructions {
+
+    justify-self: center;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    
+    
+    &__section {
+        background-color: var(--color-grey-dark-2);
+        width: 40rem;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__icon {
+        height: 3rem;
+        width: 3rem;
+        padding: 0 .5rem;
+        fill: white;
+    }
+
+    &__header-text {
+        font-size: 3rem;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    &__text {
+        font-size: 1.5rem;
+        padding: .5rem;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            height: 1rem;
+            width: 1rem;
+            margin-right: .7rem;
+    
+            // Older browsers
+            background-image: url(../img/SVG/chevron-thin-right.svg);
+            background-size: cover;
+    
+            //Newer browsers - masks
+            @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+                background-color: white;
+                -webkit-mask-image: url(../img/SVG/chevron-thin-right.svg);
+                -webkit-mask-size: cover;
+                mask-image: url(../img/SVG/chevron-thin-right.svg);
+                mask-size: cover;
+                background-image: none;
+            }
+        }          
+    }
+
+    &__examples {
+    
+    }
+
+    &__example {
+        width: 10rem;
+    }
+
+}

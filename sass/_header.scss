@@ -1,0 +1,27 @@
+.header {
+    background-color: var(--color-primary);
+    grid-column: full-start / full-end;
+    padding: 2rem;
+    
+    
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &__logo {
+        height: 15rem;
+        box-shadow: var(--shadow-dark);
+    }
+
+    &__title {
+        font-size: 3rem;
+        text-transform: uppercase;
+        margin-left: 3rem;
+        letter-spacing: 0.2rem;
+    }
+
+
+
+}

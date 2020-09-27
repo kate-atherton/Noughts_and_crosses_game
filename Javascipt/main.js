@@ -1,14 +1,14 @@
-const CIRCLE_PATH = "circleImage.jpg" 
-const CROSS_PATH = "crossImage.jpg" 
-const BLANK_PATH = "file:///C:/Users/kate_/Coding/practice/javascript/noughtsAndCrosses/blankSquare.jpg"
+const CIRCLE_PATH = "img/circleImage.jpg" 
+const CROSS_PATH = "img/crossImage.jpg" 
+const BLANK_PATH = "img/blankSquare.jpg"
 let computerPath  = CROSS_PATH
 let playerPath = CIRCLE_PATH
 const startButton = document.getElementById("start-button")
 const crossButton = document.getElementById("cross")
 const circleButton = document.getElementById("circle")
 const grid = document.getElementById("game-table")
-const gameArea = document.querySelector(".game-area")
-const whosTurn = document.querySelector(".whos-turn")
+const gameArea = document.querySelector(".game__board")
+const whosTurn = document.querySelector(".game__turn")
 const drawMessage = document.createElement("P"); 
 const lostMessage = document.createElement("P"); 
 const crossGo = document.querySelector("#cross-go")
@@ -20,11 +20,11 @@ let firstTurn = true;
 let playerArray = [];
 let computerArray = [];
 const middleSquare = {x: 1, y: 1}
-const gameSquares = [...document.querySelectorAll(".game-square")]
-
+const gameSquares = [...document.querySelectorAll(".game__square")]
 
 //establish if circle or cross is one away from winning
 const twoOutOfThree = (compOrPlayerArray) => {  
+    console.log(compOrPlayerArray)
     const findThirdSquare = (arr) => { 
         //to establish if diagonal
         let countSameXYCoord = 0;
@@ -88,6 +88,7 @@ const twoOutOfThree = (compOrPlayerArray) => {
 
             if (duplicateY !== null) {
                 let duplicates = arr.filter(obj => obj.y === duplicateY)
+                
                 let thirdBox = {
                     y: duplicateY,
                     x: 3 - (duplicates[0].x + duplicates[1].x)
@@ -252,7 +253,8 @@ const startRound = () => {
     computerArray = [];
     currentlyPlaying = true
     firstTurn = true;
-    whosTurn.style.visibility = "visible"
+    whosTurn.style.visibility = "visible";
+    gameArea.style.backgroundColor = "none";
     startButton.remove();
     drawMessage.remove()
     lostMessage.remove()
@@ -287,8 +289,8 @@ crossButton.onclick = () => {
         playerPath = CROSS_PATH;
         computerGo = circleGo;
         playerGo = crossGo;
-        crossButton.classList.add("active");
-        circleButton.classList.remove("active")
+        crossButton.classList.add("game__active");
+        circleButton.classList.remove("game__active")
     }
     
 }
@@ -299,8 +301,8 @@ circleButton.onclick = () => {
         playerPath = CIRCLE_PATH;
         computerGo = crossGo;
         playerGo = circleGo;
-        crossButton.classList.remove("active");
-        circleButton.classList.add("active")
+        crossButton.classList.remove("game__active");
+        circleButton.classList.add("game__active")
     }  
 }
 

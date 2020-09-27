@@ -1,52 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Noughts and Crosses</title>
-        <link href="./styles.css" rel="stylesheet" type="text/css"> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <link href="../css/style.css" rel="stylesheet" type="text/css"> 
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <header class="header">
-            <img class="logo" src="noughtsAndCrossesImage.jpg" alt="Noughts and Crosses logo">
-            <p class="title" >NOUGHTS AND CROSSES</p>        
-        </header>
-        <main class="main">
-            <div class="instructions-section">
-                <p class="instructions-header">Instructions!</p>
-                <div class="instructions">
-                    <p>You will be assigned either circles or crosses</p>
-                    <p>The objective of the game is to get three in a row</p>
-                    <p>However your opponent will try and stop you...</p>
-                </div>
-            </div>
-            <div class="game-table">
-                <img id="square0" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square1" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square2" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square3" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square4" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square5" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square6" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square7" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-                <img id="square8" class="game-square" src="blankSquare.jpg" alt="Noughts and crosses square">
-            </div>
-            <div id = "start-button" class="start-button">
-                Start game
-            </div>
-            <div class="share-options">
-    
-            </div>
-            <div class="comments-section">
-    
-            </div>
-            <div class="contact section">
 
+        <title>Noughts and Crosses</title>
+    </head>
+    <body class="container">
+        <div class="sidebar">
+            <button class="nav-btn"></button>
+        </div>
+        <header class="header">
+            <img class="header__logo" src="../img/noughtsAndCrossesImage.jpg" alt="Noughts and Crosses logo">
+            <p class="header__title" >Noughts and Crosses</p>        
+        </header>
+        
+        <main class="main">
+            <div class="game">
+                <div class="game__section">
+                    <div class="game__choose">
+                        <p class="game__choose-text">Choose your weapon</p>
+                        <div class="game__selectors">
+                            <img id="circle" class="game__turn-selector game__active", src="../img/circleImageGrey.jpg" alt="Circle image">
+                            <img id="cross" class="game__turn-selector" src="../img/crossImageGrey.jpg" alt="Cross image"> 
+                        </div>               
+                    </div>
+                    <div class="game__turn">
+                        <img id="circle-go" class="game__turn-image", src="../img/circleImageGrey.jpg" alt="Circle image">
+                        <img id="cross-go" class="game__turn-image", src="../img/crossImageGrey.jpg" alt="Cross image">
+                        <p class="game__turn-text">Turn</p>
+                    </div>
+                    
+                    <div id="game-board" class="game__board">
+                        <div id="game-table" class="game__table inactive">
+                            <img id="square00" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square01" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square02" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square10" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square11" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square12" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square20" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square21" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                            <img id="square22" class="game__square" src="../img/blankSquare.jpg" alt="Noughts and crosses square">
+                        </div>
+                        <p id ="start-button" class="game__button">
+                            Start game
+                        </p>  
+                    </div>  
+                </div>                          
             </div>
-            <footer class="footer">
+            <div id="instructions" class="instructions">
+                <div class="instructions__section">
+                    <div class="instructions__header">
+                        <svg class="instructions__icon">
+                            <use xlink:href="../img/sprite.svg#icon-cogs"></use>
+                        </svg>
+                        <p class="instructions__header-text">Instructions</p>
+                        <svg class="instructions__icon">
+                            <use xlink:href="../img/sprite.svg#icon-cogs"></use>
+                        </svg>
+                    </div>                  
+                   
+                    <p class="instructions__text">You can choose to play with either noughts or crosses</p>
+                    <p class="instructions__text">The objective of the game is to get three in a row.</p>
+                    <p class="instructions__text">The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.</p>
+                    <p class="instructions__text">The following examples display X winning in three different ways:</p>
+                    <div class="instructions__examples">
+                        <img class="instructions__example" src="../img/horizontalWin.JPG" alt="image of horizontal win">
+                        <img class="instructions__example" src="../img/verticalWin.JPG" alt="image of vertical win">
+                        <img class="instructions__example" src="../img/diagonalWin.JPG" alt="image of diagonal win">
+                    </div>                
+                </div>
+            </div>  
+
+            <div class="other-games">
+                <img  class= "other-games_img" src="../img/blankSquare.jpg" alt="">
+                <img  class= "other-games_img" src="../img/blankSquare.jpg" alt="">
+                <img  class= "other-games_img" src="../img/blankSquare.jpg" alt="">
+                <img  class= "other-games_img" src="../img/blankSquare.jpg" alt="">
+            </div>
+        </main>         
+        <footer class="footer">
                 <p class="footer-text">Copyright (c) 2020, KA Games</p>
-            </footer>
-        </main>       
+        </footer>           
     </body>
-    <script type="text/javascript" src="main.js">
+    <script type="text/javascript" src="Javascipt\main.js">
+    </script>
+    <script type="text/javascript" src="Javascipt\utils.js">
     </script>
 </html>

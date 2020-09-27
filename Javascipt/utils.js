@@ -56,9 +56,14 @@ const squareFree = (square) => {
     if (!(square instanceof Element)) {
         squareToCheck = getIdFromCoordinates(square)
     } 
-    if (squareToCheck.src === BLANK_PATH) {
+
+    if (squareToCheck.src.endsWith(BLANK_PATH) ) {
         return true
     } 
+
+    else {
+        return false
+    }
 }
 
 const isXYUnique = (obj1, obj2) => {
