@@ -1,109 +1,100 @@
 .game {
-    grid-column: 1 / span 1;
-    justify-self: center;
+  grid-column: 1 / span 1;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 4rem;
+
+  &__section {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    padding: 4rem;
+    align-items: center;
+  }
 
-    &__section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+  &__choose {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+  }
+
+  &__choose-text {
+    padding: 1rem;
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  &__selectors {
+    padding: 1rem;
+    cursor: auto;
+  }
+
+  &__turn-selector,
+  &__turn-image {
+    width: 4rem;
+  }
+
+  &__turn-selector {
+    border-radius: 25%;
+    cursor: pointer;
+  }
+
+  &__active {
+    cursor: auto;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  &__turn {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    visibility: hidden;
+  }
+
+  &__turn-text {
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  &__board {
+    position: relative;
+    // background-color: rgba(22, 21, 21, 0.267);
+  }
+
+  &__table {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-gap: 1rem;
+    justify-items: center;
+    background-color: var(--color-grey-light-2);
+    opacity: 0.6;
+    box-shadow: var(--shadow-light);
+  }
+
+  &__square {
+    height: 18rem;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: var(--color-primary);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-dark);
+    transition: all 0.2s;
+
+    &:hover,
+    &:active {
+      background-color: var(--color-primary-dark);
+      cursor: pointer;
     }
-
-    &__choose {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem;
-    }
-
-    &__choose-text {
-        margin-right: 0.5rem;
-        font-size: 1.5rem;
-    }
-
-    &__turn-selector,
-    &__turn-image {
-        width: 3rem;
-    }
-
-    &__turn-selector {
-        cursor: pointer;
-    }
-
-    &__active {
-        border-bottom: 2px solid var(--color-primary);
-        cursor: auto;
-
-        // &::after {
-        //     box-shadow: inset 3px 3px 10px 0 #000000;
-        //     content: '';
-        //     display: block;
-        //     height: 100%;
-        //     position: absolute;
-        //     top: 0;
-        //     width: 100%;
-        // }
-    }
-
-    &__turn {
-        display: flex;
-        align-items: center;
-        padding: .5rem;
-        margin-bottom: .5rem;
-    }
-
-    &__turn-text {
-        margin-left: .5rem;
-        font-size: 1.5rem;
-    }
-
-
-    &__board {
-        position: relative;
-        // background-color: rgba(22, 21, 21, 0.267);
-        
-    }
-
-    &__table {
-        display: grid;
-        grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-        grid-gap: 1rem;
-        justify-items: center;
-        background-color: var(--color-grey-light-2);  
-        opacity: 0.6;
-        box-shadow: var(--shadow-light);
-        
-    }
-
-    &__square {
-        height: 18rem;
-    }
-
-
-    &__button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 100;
-        background-color: var(--color-primary);
-        padding: 1rem 2rem;
-        border-radius: 1rem;
-        color: white;
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        box-shadow: var(--shadow-dark);
-        transition: all .2s;
-
-        &:hover,
-        &:active {
-            background-color: var(--color-primary-dark);
-            cursor: pointer;
-            
-        }
-    }
-
+  }
 }
-

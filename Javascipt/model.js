@@ -1,16 +1,18 @@
-const initialiseModel = () => {
-  // define all the variables that hold state
-  //only call this function once, otherwise it will redefine all the variables
-  //define all the functions that you want to define to update or view those variables
-  //return an object that contains all the functions
-
+const initialiseModel = (onTurnUpdate) => {
   let currentlyPlaying = false;
   let playerArray = [];
   let computerArray = [];
+  let turn = "player";
 
   const checkCurrentlyPlaying = () => currentlyPlaying;
   const updateCurrentlyPlaying = (value) => {
     currentlyPlaying = value;
+  };
+
+  let whosTurn = () => turn;
+
+  const resetTurn = () => {
+    turn = "player";
   };
 
   const resetPlayerArrays = () => {
@@ -19,11 +21,23 @@ const initialiseModel = () => {
   };
 
   const addCoordsToArray = (square, array) => {
-    array.push(getCoordsFromHtml(square));
+    array.push(square);
   };
 
   const readPlayerArray = () => [...playerArray];
   const readComputerArray = () => [...computerArray];
+
+  const makePlayerMove = (coords) => {
+    addCoordsToArray(coords, playerArray);
+    turn = "computer";
+    onTurnUpdate();
+  };
+
+  const makeComputerMove = (coords) => {
+    addCoordsToArray(coords, computerArray);
+    turn = "player";
+    onTurnUpdate();
+  };
 
   return {
     checkCurrentlyPlaying,
@@ -32,5 +46,9 @@ const initialiseModel = () => {
     addCoordsToArray,
     readPlayerArray,
     readComputerArray,
+    makePlayerMove,
+    makeComputerMove,
+    whosTurn,
+    resetTurn,
   };
 };

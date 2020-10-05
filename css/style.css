@@ -62,9 +62,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center; }
-  .header__logo {
-    height: 15rem;
-    box-shadow: var(--shadow-dark); }
   .header__title {
     font-size: 3rem;
     text-transform: uppercase;
@@ -117,22 +114,28 @@ body {
     align-items: center;
     padding: 0.5rem; }
   .game__choose-text {
+    padding: 1rem;
     margin-right: 0.5rem;
     font-size: 1.5rem; }
+  .game__selectors {
+    padding: 1rem;
+    cursor: auto; }
   .game__turn-selector, .game__turn-image {
-    width: 3rem; }
+    width: 4rem; }
   .game__turn-selector {
+    border-radius: 25%;
     cursor: pointer; }
   .game__active {
-    border-bottom: 2px solid var(--color-primary);
-    cursor: auto; }
+    cursor: auto;
+    border-bottom: 2px solid var(--color-primary); }
   .game__turn {
     display: flex;
     align-items: center;
-    padding: .5rem;
-    margin-bottom: .5rem; }
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    visibility: hidden; }
   .game__turn-text {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
     font-size: 1.5rem; }
   .game__board {
     position: relative; }
@@ -159,7 +162,7 @@ body {
     font-size: 1.5rem;
     text-transform: uppercase;
     box-shadow: var(--shadow-dark);
-    transition: all .2s; }
+    transition: all 0.2s; }
     .game__button:hover, .game__button:active {
       background-color: var(--color-primary-dark);
       cursor: pointer; }

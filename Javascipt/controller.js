@@ -1,5 +1,3 @@
-const model = initialiseModel();
-
 const CIRCLE_PATH = "img/circleImage.jpg";
 const CROSS_PATH = "img/crossImage.jpg";
 const BLANK_PATH = "img/blankSquare.jpg";
@@ -21,14 +19,36 @@ let firstTurn = true;
 const middleSquare = { x: 1, y: 1 };
 const gameSquares = [...document.querySelectorAll(".game__square")];
 
-//get square coordinates from gamesquares in html
 const squareCoordinates = gameSquares.map((gameSquare) => {
   return getCoordsFromHtml(gameSquare);
 });
 
+const makePlayerMove = (coords) => {
+  //need to check if square is free
+  if (model.whosTurn() === "player" && squareFree(coords)) {
+    model.makePlayerMove(coords);
+  }
+};
+
+const onTurnUpdate = () => {
+  let gridInfoPlayer = model.readPlayerArray();
+  let gridInfoComp = model.readComputerArray();
+  renderGrid(gridInfoPlayer, gridInfoComp);
+  if (model.whosTurn() === "computer") {
+    setTimeout(computerTurn, 1000);
+  }
+};
+
+const playerTurn = () => {
+  gameSquares.forEach((gameSquare) => {
+    if (model.checkCurrentlyPlaying()) {
+      gameSquare.addEventListener("click", onPlayerClick);
+    }
+  });
+};
+
 //establish if circle or cross is one away from winning
 const twoOutOfThree = (compOrPlayerArray) => {
-  console.log(compOrPlayerArray);
   const findThirdSquare = (arr) => {
     //to establish if diagonal
     let countSameXYCoord = 0;
@@ -152,45 +172,32 @@ const forkDilemma = (currentPlayerArray) => {
   return null;
 };
 
-const makePlayerMove = (square) => {
-  square.src = playerPath;
-  playerArray.push(getCoordsFromHtml(square));
-};
-
-const makeComputerMove = (squareCoordinates) => {
-  //convert back to ID -always sends through an object eg//{x: 1, y: 1}
-  let squareId = getIdFromCoordinates(squareCoordinates);
-  squareId.src = computerPath;
-  computerArray.push(squareCoordinates);
-};
-
 const computerTurn = () => {
   if (isGameDraw()) {
     gameOver("draw");
   }
   if (model.checkCurrentlyPlaying()) {
-    showImage(computerGo);
+    // showImage(computerGo);
     if (firstTurn) {
       if (squareFree(middleSquare)) {
-        makeComputerMove(middleSquare);
+        model.makeComputerMove(middleSquare);
       } else {
-        makeComputerMove(freeCornerSquare());
+        model.makeComputerMove(freeCornerSquare());
       }
       firstTurn = false;
-    } else if (twoOutOfThree(computerArray) !== null) {
-      makeComputerMove(twoOutOfThree(computerArray));
+    } else if (twoOutOfThree(model.readComputerArray()) !== null) {
+      model.makeComputerMove(twoOutOfThree(model.readComputerArray()));
       gameOver();
-    } else if (twoOutOfThree(playerArray) !== null) {
-      makeComputerMove(twoOutOfThree(playerArray));
-    } else if (forkDilemma(playerArray) !== null) {
-      makeComputerMove(forkDilemma(playerArray));
+    } else if (twoOutOfThree(model.readPlayerArray()) !== null) {
+      model.makeComputerMove(twoOutOfThree(model.readPlayerArray()));
+    } else if (forkDilemma(model.readPlayerArray()) !== null) {
+      model.makeComputerMove(forkDilemma(model.readPlayerArray()));
     } else {
-      makeComputerMove(freeCornerSquare());
+      model.makeComputerMove(freeCornerSquare());
     }
 
-    hideImage(computerGo);
-    showImage(playerGo);
-    playerTurn();
+    // hideImage(computerGo);
+    // showImage(playerGo);
   }
 };
 
@@ -222,29 +229,14 @@ const freeCornerSquare = () => {
   return null;
 };
 
-let onPlayerClick = ({ target }) => {
-  makePlayerMove(target);
-  setTimeout(computerTurn, 1000);
-  gameSquares.forEach((gameSquare) => {
-    gameSquare.removeEventListener("click", onPlayerClick);
-  });
-};
-
-//apply onclick functionality to all squares. Log if square has been made x circle and assign box number to array
-const playerTurn = () => {
-  gameSquares.forEach((gameSquare) => {
-    if (squareFree(gameSquare) && model.checkCurrentlyPlaying()) {
-      gameSquare.addEventListener("click", onPlayerClick);
-    }
-  });
-};
-
 const startRound = () => {
-  //make all srcs blank squares
+  model.resetTurn();
   grid.classList.remove("inactive");
-  gameSquares.forEach((gameSquare) => (gameSquare.src = BLANK_PATH));
   model.resetPlayerArrays();
   model.updateCurrentlyPlaying(true);
+  let gridInfoPlayer = model.readPlayerArray();
+  let gridInfoComp = model.readComputerArray();
+  renderGrid(gridInfoPlayer, gridInfoComp);
   firstTurn = true;
   whosTurn.style.visibility = "visible";
   gameArea.style.backgroundColor = "none";
@@ -296,4 +288,5 @@ circleButton.onclick = () => {
   }
 };
 
+const model = initialiseModel(onTurnUpdate);
 //maybe add x give up button?

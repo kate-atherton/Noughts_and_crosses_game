@@ -103,10 +103,10 @@ const changeMessageStyle = (message) => {
   message.style.marginTop = "37%";
 };
 
-const showImage = (id) => {
-  id.style.visibility = "visible";
-};
+// const showImage = (id) => {
+//   id.style.visibility = "visible";
+// };
 
-const hideImage = (id) => {
-  id.style.visibility = "hidden";
-};
+// const hideImage = (id) => {
+//   id.style.visibility = "hidden";
+// };
