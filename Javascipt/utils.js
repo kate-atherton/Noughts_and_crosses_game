@@ -1,3 +1,16 @@
+//check if square is free
+//must receive arrays as argumemts, in utils
+const squareFree = (square, playerArray, computerArray) => {
+  if (
+    includesCoords(playerArray, square) ||
+    includesCoords(computerArray, square)
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 const isCorner = ({ x, y }) => {
   if (x !== 1 && y !== 1) {
     return true;
@@ -8,6 +21,18 @@ const isCorner = ({ x, y }) => {
 const isMatch = (coords1, coords2) => {
   if (coords1.x === coords2.x && coords1.y === coords2.y) {
     return true;
+  }
+  return false;
+};
+
+const includesCoords = (array, coords) => {
+  if (array.length < 1) {
+    return false;
+  }
+  for (let i = 0; i < array.length; i++) {
+    if (isMatch(array[i], coords)) {
+      return true;
+    }
   }
   return false;
 };
@@ -47,20 +72,6 @@ const shuffleArray = (array) => {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-};
-
-//check if square is free
-const squareFree = (square) => {
-  let squareToCheck = square;
-  if (!(square instanceof Element)) {
-    squareToCheck = getIdFromCoordinates(square);
-  }
-
-  if (squareToCheck.src.endsWith(BLANK_PATH)) {
-    return true;
-  } else {
-    return false;
-  }
 };
 
 const isXYUnique = (obj1, obj2) => {
