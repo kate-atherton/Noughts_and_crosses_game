@@ -3,8 +3,11 @@ const CROSS_PATH = "img/crossImage.jpg";
 const BLANK_PATH = "img/blankSquare.jpg";
 let computerPath = CROSS_PATH;
 let playerPath = CIRCLE_PATH;
-const computerGo = crossGo;
-const playerGo = circleGo;
+const CIRCLE_PATH_GREY = "img/circleImageGrey.jpg";
+const CROSS_PATH_GREY = "img/crossImageGrey.jpg";
+let computerPathGrey = CROSS_PATH_GREY;
+let playerPathGrey = CIRCLE_PATH_GREY;
+
 const middleSquare = { x: 1, y: 1 };
 
 const squareCoordinates = gameSquares.map((gameSquare) => {
@@ -40,6 +43,7 @@ const onTurnUpdate = () => {
   let gridInfoPlayer = model.readPlayerArray();
   let gridInfoComp = model.readComputerArray();
   renderGrid(gridInfoPlayer, gridInfoComp);
+  renderTurn(model.whosTurn());
   if (model.whosTurn() === "computer") {
     setTimeout(() => {
       computerTurn(model.readPlayerArray(), model.readComputerArray());
@@ -58,13 +62,15 @@ const playerTurn = () => {
 //add x notification saying your turn..
 
 const startRound = () => {
-  model.resetTurn();
   grid.classList.remove("inactive");
+  model.resetTurn();
   model.resetPlayerArrays();
   model.updateCurrentlyPlaying(true);
   let gridInfoPlayer = model.readPlayerArray();
   let gridInfoComp = model.readComputerArray();
+  let turn = model.whosTurn();
   renderGrid(gridInfoPlayer, gridInfoComp);
+  renderTurn(turn);
   whosTurn.style.visibility = "visible";
   gameArea.style.backgroundColor = "none";
   startButton.remove();
@@ -87,32 +93,7 @@ const gameOver = (status) => {
   startButton.innerHTML = "Play again";
   model.updateCurrentlyPlaying(false);
   grid.classList.add("inactive");
-};
-
-startButton.onclick = () => {
-  startRound();
-};
-
-crossButton.onclick = () => {
-  if (model.checkCurrentlyPlaying()) {
-    computerPath = CIRCLE_PATH;
-    playerPath = CROSS_PATH;
-    computerGo = circleGo;
-    playerGo = crossGo;
-    crossButton.classList.add("game__active");
-    circleButton.classList.remove("game__active");
-  }
-};
-
-circleButton.onclick = () => {
-  if (model.checkCurrentlyPlaying()) {
-    computerPath = CROSS_PATH;
-    playerPath = CIRCLE_PATH;
-    computerGo = crossGo;
-    playerGo = circleGo;
-    crossButton.classList.remove("game__active");
-    circleButton.classList.add("game__active");
-  }
+  whosTurn.style.visibility = "hidden";
 };
 
 const model = initialiseModel(onTurnUpdate);
