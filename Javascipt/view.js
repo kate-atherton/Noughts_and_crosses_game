@@ -47,22 +47,22 @@ const renderTurn = (turn) => {
 };
 
 crossButton.onclick = () => {
-  if (model.checkCurrentlyPlaying()) {
+  if (!currentlyPlaying()) {
+    computerPathGrey = CIRCLE_PATH_GREY;
+    playerPathGrey = CROSS_PATH_GREY;
     computerPath = CIRCLE_PATH;
     playerPath = CROSS_PATH;
-    computerGo = circleGo;
-    playerGo = crossGo;
     crossButton.classList.add("game__active");
     circleButton.classList.remove("game__active");
   }
 };
 
 circleButton.onclick = () => {
-  if (model.checkCurrentlyPlaying()) {
+  if (!currentlyPlaying()) {
+    computerPathGrey = CROSS_PATH_GREY;
+    playerPathGrey = CIRCLE_PATH_GREY;
     computerPath = CROSS_PATH;
     playerPath = CIRCLE_PATH;
-    computerGo = crossGo;
-    playerGo = circleGo;
     crossButton.classList.remove("game__active");
     circleButton.classList.add("game__active");
   }
