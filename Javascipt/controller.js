@@ -3,20 +3,9 @@ const CROSS_PATH = "img/crossImage.jpg";
 const BLANK_PATH = "img/blankSquare.jpg";
 let computerPath = CROSS_PATH;
 let playerPath = CIRCLE_PATH;
-const startButton = document.getElementById("start-button");
-const crossButton = document.getElementById("cross");
-const circleButton = document.getElementById("circle");
-const grid = document.getElementById("game-table");
-const gameArea = document.querySelector(".game__board");
-const whosTurn = document.querySelector(".game__turn");
-const drawMessage = document.createElement("P");
-const lostMessage = document.createElement("P");
-const crossGo = document.querySelector("#cross-go");
-const circleGo = document.querySelector("#circle-go");
 const computerGo = crossGo;
 const playerGo = circleGo;
 const middleSquare = { x: 1, y: 1 };
-const gameSquares = [...document.querySelectorAll(".game__square")];
 
 const squareCoordinates = gameSquares.map((gameSquare) => {
   return getCoordsFromHtml(gameSquare);
