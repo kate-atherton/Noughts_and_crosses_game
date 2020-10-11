@@ -4,13 +4,12 @@ const computerTurn = (playerArray, computerArray) => {
   }
   if (currentlyPlaying()) {
     // showImage(computerGo);
-    if (firstTurn) {
+    if (firstTurn()) {
       if (squareFree(middleSquare, playerArray, computerArray)) {
         makeComputerMove(middleSquare);
       } else {
         makeComputerMove(freeCornerSquare(playerArray, computerArray));
       }
-      firstTurn = false;
     } else if (
       twoOutOfThree(computerArray, playerArray, computerArray) !== null
     ) {

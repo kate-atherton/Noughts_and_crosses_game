@@ -11,6 +11,12 @@ const initialiseModel = (onTurnUpdate) => {
 
   let whosTurn = () => turn;
 
+  const checkFirstTurn = () => {
+    if (computerArray.length < 1) {
+      return true;
+    }
+  };
+
   const resetTurn = () => {
     turn = "player";
   };
@@ -50,5 +56,6 @@ const initialiseModel = (onTurnUpdate) => {
     makeComputerMove,
     whosTurn,
     resetTurn,
+    checkFirstTurn,
   };
 };

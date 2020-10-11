@@ -15,7 +15,6 @@ const crossGo = document.querySelector("#cross-go");
 const circleGo = document.querySelector("#circle-go");
 const computerGo = crossGo;
 const playerGo = circleGo;
-let firstTurn = true;
 const middleSquare = { x: 1, y: 1 };
 const gameSquares = [...document.querySelectorAll(".game__square")];
 
@@ -25,6 +24,12 @@ const squareCoordinates = gameSquares.map((gameSquare) => {
 
 const currentlyPlaying = () => {
   if (model.checkCurrentlyPlaying()) {
+    return true;
+  }
+};
+
+const firstTurn = () => {
+  if (model.checkFirstTurn()) {
     return true;
   }
 };
@@ -71,7 +76,6 @@ const startRound = () => {
   let gridInfoPlayer = model.readPlayerArray();
   let gridInfoComp = model.readComputerArray();
   renderGrid(gridInfoPlayer, gridInfoComp);
-  firstTurn = true;
   whosTurn.style.visibility = "visible";
   gameArea.style.backgroundColor = "none";
   startButton.remove();
