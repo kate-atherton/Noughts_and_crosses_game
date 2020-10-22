@@ -97,4 +97,3 @@ const gameOver = (status) => {
 };
 
 const model = initialiseModel(onTurnUpdate);
-//maybe add x give up button?

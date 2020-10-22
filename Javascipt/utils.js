@@ -1,5 +1,3 @@
-//check if square is free
-//must receive arrays as argumemts, in utils
 const squareFree = (square, playerArray, computerArray) => {
   if (
     includesCoords(playerArray, square) ||
@@ -113,11 +111,3 @@ const changeMessageStyle = (message) => {
   message.style.fontWeight = "600";
   message.style.marginTop = "37%";
 };
-
-// const showImage = (id) => {
-//   id.style.visibility = "visible";
-// };
-
-// const hideImage = (id) => {
-//   id.style.visibility = "hidden";
-// };
