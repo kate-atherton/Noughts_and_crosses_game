@@ -18,10 +18,12 @@
     <title>Noughts and Crosses</title>
   </head>
   <body class="container">
+    <div class="sidebar">
+      <button class="sidebar__nav-btn"></button>
+    </div>
     <header class="header">
       <div class="header__empty"></div>
       <p class="header__title">Noughts and Crosses</p>
-      <button class="header__nav-btn"></button>
     </header>
 
     <main class="main">
@@ -123,7 +125,7 @@
           <svg class="instructions__icon">
             <use xlink:href="../img/sprite.svg#icon-cogs"></use>
           </svg>
-          <p class="instructions__header-text">Instructions</p>
+          <h2 class="heading-2">Instructions</h2>
           <svg class="instructions__icon">
             <use xlink:href="../img/sprite.svg#icon-cogs"></use>
           </svg>
@@ -163,26 +165,56 @@
       </div>
 
       <div class="other-games">
-        <img
-          class="other-games__img"
-          src="../img/solitaire.png"
-          alt="Solitaire image"
-        />
-        <img
-          class="other-games__img"
-          src="../img/tetrus.jpg"
-          alt="Tetrus Image"
-        />
-        <img
-          class="other-games__img"
-          src="../img/bubbleShooter.jpg"
-          alt="Bubble Shooter Image"
-        />
-        <img
-          class="other-games__img"
-          src="../img/bubbleShooter.jpg"
-          alt="Bubble Shooter Image"
-        />
+        <h2 class="other-games__header heading-2">Other Games</h2>
+        <div class="other-games__images">
+          <div class="other-games__game">
+            <div class="other-games__wrapper">
+              <button class="other-games__btn">Play</button>
+              <img
+                class="other-games__img"
+                src="../img/solitaire.png"
+                alt="Solitaire image"
+              />
+            </div>
+            <p class="other-games__text">Solitaire</p>
+          </div>
+
+          <div class="other-games__game">
+            <div class="other-games__wrapper">
+              <button class="other-games__btn">Play</button>
+              <img
+                class="other-games__img"
+                src="../img/tetrus.jpg"
+                alt="Tetrus Image"
+              />
+            </div>
+            <p class="other-games__text">Tetrus</p>
+          </div>
+
+          <div class="other-games__game">
+            <div class="other-games__wrapper">
+              <button class="other-games__btn">Play</button>
+              <img
+                class="other-games__img"
+                src="../img/bubbleShooter.jpg"
+                alt="Bubble Shooter Image"
+              />
+            </div>
+            <p class="other-games__text">Bubble Shooter</p>
+          </div>
+
+          <div class="other-games__game">
+            <div class="other-games__wrapper">
+              <button class="other-games__btn">Play</button>
+              <img
+                class="other-games__img"
+                src="../img/bubbleShooter.jpg"
+                alt="Bubble Shooter Image"
+              />
+            </div>
+            <p class="other-games__text">Bubble Shooter</p>
+          </div>
+        </div>
       </div>
     </main>
     <footer class="footer">

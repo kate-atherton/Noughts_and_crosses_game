@@ -4,7 +4,8 @@
   --color-primary-dark: #0a121b;
   --color-primary-light: #182c42;
 
-  --color-secondary: #3e444b;
+  --color-secondary: #f5a271;
+  --color-secondary-dark: #965e3e;
 
   --color-grey-light-1: #f9f7f6;
   --color-grey-light-2: #aaa;
@@ -51,16 +52,19 @@ body {
   font-weight: 300;
   line-height: 1.6;
   font-family: var(--font-primary);
+  color: var(--color-grey-dark-1);
 }
 
 .container {
   display: grid;
   grid-template-rows: 10vh min-content 20vh;
-  grid-template-columns: [full-start] minmax(4rem, 1fr) [full-end];
+  grid-template-columns:
+    [full-start] minmax(4rem, 1fr)
+    [full-end sidebar-start] 8rem [sidebar-end];
 }
 
 .main {
   display: grid;
   grid-column: full-start / full-end;
-  grid-template-rows: 110vh 70vh 50vh;
+  grid-template-rows: 110vh 70vh 70vh;
 }

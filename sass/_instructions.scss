@@ -13,7 +13,6 @@
     justify-content: center;
     padding: 1rem;
     align-self: end;
-    color: var(--color-grey-dark-1);
   }
 
   &__icon {
@@ -21,12 +20,6 @@
     width: 3rem;
     padding: 0 0.5rem;
     fill: var(--color-grey-dark-1);
-  }
-
-  &__header-text {
-    font-size: 3.5rem;
-    padding: 0.5rem;
-    text-align: center;
   }
 
   &__text {

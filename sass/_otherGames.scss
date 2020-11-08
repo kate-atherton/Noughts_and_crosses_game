@@ -1,13 +1,82 @@
 .other-games {
   grid-row: 3 / span 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  grid-template-rows: 0.75fr 2fr;
+
   align-items: center;
   background-color: #fff;
+  text-align: center;
+
+  &__header {
+    align-self: end;
+    padding: 1rem;
+  }
+
+  &__images {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__game {
+    width: 20%;
+    text-align: center;
+  }
+
+  &__wrapper {
+    width: 100%;
+    border-radius: 1rem;
+    position: relative;
+  }
+
+  &__btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    transition: opacity 0.4s ease-out;
+    transition: transform 0.2s;
+    opacity: 0;
+    font-family: inherit;
+    font-size: 1.5rem;
+
+    &:hover {
+      background-color: var(--color-secondary);
+      color: white;
+      transform: translate(-50%, -45%);
+    }
+
+    &:active,
+    &:focus {
+      box-shadow: var(--box-shadow-dark);
+      transform: translate(-50%, -50%);
+      outline: none;
+    }
+  }
+
+  &__wrapper:hover &__btn {
+    border: 0.4rem solid var(--color-secondary);
+    color: black;
+
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    opacity: 1;
+    z-index: 100;
+  }
+
+  &__wrapper:hover &__img {
+    opacity: 0.2;
+  }
 
   &__img {
-    width: 20%;
-    // height: ;
+    width: 100%;
+    border-radius: 1rem;
+    transition: all 0.4s ease-out;
+    box-shadow: var(--shadow-dark);
+  }
+
+  &__text {
+    font-size: 2rem;
   }
 }
