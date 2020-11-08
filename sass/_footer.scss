@@ -2,8 +2,40 @@
   background-color: var(--color-primary);
   grid-column: full-start / full-end;
   grid-row: 3 / span 1;
+  padding: 5rem;
 }
 
 .nav {
+  margin: auto;
+  width: 80%;
   list-style: none;
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-gap: 1rem;
+  align-items: center;
+
+  &__link:link,
+  &__link:visited {
+    font-size: 1.4rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    padding: 1.5rem;
+    transition: all 0.2s;
+  }
+
+  &__link:hover,
+  &__link:active {
+    background-color: var(--color-primary-light);
+    transform: translateY(-3px);
+  }
+}
+
+.copyright {
+  color: white;
+  text-align: center;
+  margin-top: 3rem;
 }

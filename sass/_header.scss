@@ -1,17 +1,42 @@
 .header {
   background-color: var(--color-primary);
-  grid-column: full-start / full-end;
+  border-bottom: 1px solid white;
   padding: 2rem;
-
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
 
   &__title {
     font-size: 3rem;
     text-transform: uppercase;
     margin-left: 3rem;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.25rem;
+    color: lightgray;
+  }
+
+  &__nav-btn {
+    border: none;
+    border-radius: 0;
+    color: lightgray;
+    height: 2px;
+    width: 4rem;
+
+    &::before,
+    &::after {
+      background-color: #fff;
+      height: 2px;
+      width: 4rem;
+      margin-top: 0;
+      content: "";
+      display: block;
+    }
+
+    &::before {
+      transform: translateY(-1.5rem);
+    }
+    &::after {
+      transform: translateY(1.3rem);
+    }
   }
 }

@@ -1,12 +1,23 @@
 .game {
-  grid-row: 1 / span 1;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(16, 29, 44, 0.8),
+      rgba(11, 19, 29, 0.8)
+    ),
+    url(../img/background2.jpg);
+  backdrop-filter: blur(10px);
+  background-size: cover;
   padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &__section {
+  &__wrapper {
+    width: min-content;
+    padding: 3% 15% 7% 15%;
+    height: min-content;
+    // background-color: rgba(16, 18, 49, 1);
+    // box-shadow: 0 0 2rem 1rem rgb(26, 29, 73);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,8 +29,8 @@
   }
 
   &__choose-text {
+    color: white;
     padding: 0.5rem;
-    // margin-right: 0.5rem;
     font-size: 2rem;
   }
 
@@ -59,7 +70,6 @@
 
   &__board {
     position: relative;
-    // background-color: rgba(22, 21, 21, 0.267);
   }
 
   &__table {
@@ -67,13 +77,12 @@
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     grid-gap: 1rem;
     justify-items: center;
-    background-color: var(--color-grey-light-2);
-    opacity: 0.6;
     box-shadow: var(--shadow-light);
   }
 
   &__square {
     height: 18rem;
+    border-radius: 0.5rem;
   }
 
   &__button {
@@ -82,7 +91,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     padding: 1rem 2rem;
     border-radius: 1rem;
     color: white;
@@ -93,7 +102,7 @@
 
     &:hover,
     &:active {
-      background-color: var(--color-primary-dark);
+      background-color: var(--color-primary-light);
       cursor: pointer;
     }
   }

@@ -1,18 +1,16 @@
 :root {
-  --color-primary: rgb(39, 134, 134);
-  --color-primary-dark: rgb(36, 105, 105);
-  --color-primary-transparent: rgb(39, 134, 134, 0.2);
+  --color-primary: #101d2c;
+  --color-primary-dark: #0a121b;
+  --color-primary-light: #182c42;
   --color-secondary: #3e444b;
-  --color-grey-light-1: #faf9f9;
-  --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
-  --color-grey-light-4: #ccc;
+  --color-grey-light-1: #f9f7f6;
+  --color-grey-light-2: #aaa;
   --color-grey-dark-1: #333;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
-  --font-primary: "Nunito", sans-serif; }
+  --font-primary: "Rubik", sans-serif; }
 
 *,
 *::before,
@@ -34,14 +32,13 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 20vh min-content 20vh;
-  grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(4rem, 1fr) [full-end]; }
+  grid-template-rows: 10vh min-content 20vh;
+  grid-template-columns: [full-start] minmax(4rem, 1fr) [full-end]; }
 
 .main {
   display: grid;
   grid-column: full-start / full-end;
-  grid-template-rows: min-content 50vh 50vh;
-  background-color: var(--color-grey-light-2); }
+  grid-template-rows: 110vh 70vh 50vh; }
 
 .mb-sm {
   margin-bottom: 2rem; }
@@ -57,17 +54,35 @@ body {
 
 .header {
   background-color: var(--color-primary);
-  grid-column: full-start / full-end;
+  border-bottom: 1px solid white;
   padding: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center; }
+  align-items: center;
+  justify-content: space-between; }
   .header__title {
     font-size: 3rem;
     text-transform: uppercase;
     margin-left: 3rem;
-    letter-spacing: 0.2rem; }
+    letter-spacing: 0.25rem;
+    color: lightgray; }
+  .header__nav-btn {
+    border: none;
+    border-radius: 0;
+    color: lightgray;
+    height: 2px;
+    width: 4rem; }
+    .header__nav-btn::before, .header__nav-btn::after {
+      background-color: #fff;
+      height: 2px;
+      width: 4rem;
+      margin-top: 0;
+      content: "";
+      display: block; }
+    .header__nav-btn::before {
+      transform: translateY(-1.5rem); }
+    .header__nav-btn::after {
+      transform: translateY(1.3rem); }
 
 .sidebar {
   display: flex;
@@ -98,19 +113,48 @@ body {
 .footer {
   background-color: var(--color-primary);
   grid-column: full-start / full-end;
-  grid-row: 3 / span 1; }
+  grid-row: 3 / span 1;
+  padding: 5rem; }
 
 .nav {
-  list-style: none; }
+  margin: auto;
+  width: 80%;
+  list-style: none;
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-gap: 1rem;
+  align-items: center; }
+  .nav__link:link, .nav__link:visited {
+    font-size: 1.4rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    padding: 1.5rem;
+    transition: all 0.2s; }
+  .nav__link:hover, .nav__link:active {
+    background-color: var(--color-primary-light);
+    transform: translateY(-3px); }
+
+.copyright {
+  color: white;
+  text-align: center;
+  margin-top: 3rem; }
 
 .game {
-  grid-row: 1 / span 1;
-  justify-self: center;
+  background-image: linear-gradient(to right bottom, rgba(16, 29, 44, 0.8), rgba(11, 19, 29, 0.8)), url(../img/background2.jpg);
+  backdrop-filter: blur(10px);
+  background-size: cover;
+  padding: 4rem;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 4rem; }
-  .game__section {
+  justify-content: center;
+  align-items: center; }
+  .game__wrapper {
+    width: min-content;
+    padding: 3% 15% 7% 15%;
+    height: min-content;
     display: flex;
     flex-direction: column;
     align-items: center; }
@@ -118,6 +162,7 @@ body {
     display: flex;
     align-items: center; }
   .game__choose-text {
+    color: white;
     padding: 0.5rem;
     font-size: 2rem; }
   .game__selectors {
@@ -148,18 +193,17 @@ body {
     grid-template: repeat(3, 1fr)/repeat(3, 1fr);
     grid-gap: 1rem;
     justify-items: center;
-    background-color: var(--color-grey-light-2);
-    opacity: 0.6;
     box-shadow: var(--shadow-light); }
   .game__square {
-    height: 18rem; }
+    height: 18rem;
+    border-radius: 0.5rem; }
   .game__button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     padding: 1rem 2rem;
     border-radius: 1rem;
     color: white;
@@ -168,35 +212,36 @@ body {
     box-shadow: var(--shadow-dark);
     transition: all 0.2s; }
     .game__button:hover, .game__button:active {
-      background-color: var(--color-primary-dark);
+      background-color: var(--color-primary-light);
       cursor: pointer; }
 
 .instructions {
-  grid-row: 2 / span 1; }
-  .instructions__section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: var(--color-grey-dark-3);
-    color: white; }
+  grid-row: 2 / span 1;
+  background-color: var(--color-grey-light-1);
+  display: grid;
+  grid-template-rows: 0.75fr 2fr 1.5fr;
+  justify-items: center;
+  align-items: center;
+  text-align: center; }
   .instructions__header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem; }
+    padding: 1rem;
+    align-self: end;
+    color: var(--color-grey-dark-1); }
   .instructions__icon {
     height: 3rem;
     width: 3rem;
     padding: 0 0.5rem;
-    fill: white; }
+    fill: var(--color-grey-dark-1); }
   .instructions__header-text {
     font-size: 3.5rem;
     padding: 0.5rem;
     text-align: center; }
   .instructions__text {
     font-size: 2rem;
-    padding: 0.5rem; }
+    padding: 1.5rem; }
     .instructions__text::before {
       content: "";
       display: inline-block;
@@ -220,7 +265,15 @@ body {
     width: 25%; }
   .instructions__example {
     width: 12rem;
-    padding: 0.5rem; }
+    padding: 0.5rem;
+    border-radius: 0.5rem; }
 
-other-games {
-  grid-row: 3 / span 1; }
+.other-games {
+  grid-row: 3 / span 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff; }
+  .other-games__img {
+    width: 20%; }

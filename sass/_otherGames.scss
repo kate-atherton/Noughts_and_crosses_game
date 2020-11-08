@@ -1,3 +1,13 @@
-other-games {
+.other-games {
   grid-row: 3 / span 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+
+  &__img {
+    width: 20%;
+    // height: ;
+  }
 }

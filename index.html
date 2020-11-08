@@ -11,24 +11,22 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Work+Sans"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap"
       rel="stylesheet"
-      type="text/css"
     />
 
     <title>Noughts and Crosses</title>
   </head>
   <body class="container">
-    <div class="sidebar">
-      <button class="nav-btn"></button>
-    </div>
     <header class="header">
+      <div class="header__empty"></div>
       <p class="header__title">Noughts and Crosses</p>
+      <button class="header__nav-btn"></button>
     </header>
 
     <main class="main">
       <div class="game">
-        <div class="game__section">
+        <div class="game__wrapper">
           <div class="game__choose">
             <p class="game__choose-text">Choose your weapon</p>
             <div class="game__selectors">
@@ -116,20 +114,21 @@
             </div>
             <p id="start-button" class="game__button">Start game</p>
           </div>
+          <div class="game__fade"></div>
         </div>
       </div>
-      <div id="instructions" class="instructions">
-        <div class="instructions__section">
-          <div class="instructions__header">
-            <svg class="instructions__icon">
-              <use xlink:href="../img/sprite.svg#icon-cogs"></use>
-            </svg>
-            <p class="instructions__header-text">Instructions</p>
-            <svg class="instructions__icon">
-              <use xlink:href="../img/sprite.svg#icon-cogs"></use>
-            </svg>
-          </div>
 
+      <div id="instructions" class="instructions">
+        <div class="instructions__header">
+          <svg class="instructions__icon">
+            <use xlink:href="../img/sprite.svg#icon-cogs"></use>
+          </svg>
+          <p class="instructions__header-text">Instructions</p>
+          <svg class="instructions__icon">
+            <use xlink:href="../img/sprite.svg#icon-cogs"></use>
+          </svg>
+        </div>
+        <div class="instructions__texts">
           <p class="instructions__text">
             You can choose to play with either noughts or crosses
           </p>
@@ -143,31 +142,47 @@
           <p class="instructions__text">
             The following examples display X winning in three different ways:
           </p>
-          <div class="instructions__examples">
-            <img
-              class="instructions__example"
-              src="../img/horizontalWin.JPG"
-              alt="image of horizontal win"
-            />
-            <img
-              class="instructions__example"
-              src="../img/verticalWin.JPG"
-              alt="image of vertical win"
-            />
-            <img
-              class="instructions__example"
-              src="../img/diagonalWin.JPG"
-              alt="image of diagonal win"
-            />
-          </div>
+        </div>
+        <div class="instructions__examples">
+          <img
+            class="instructions__example"
+            src="../img/horizontalWin.JPG"
+            alt="image of horizontal win"
+          />
+          <img
+            class="instructions__example"
+            src="../img/verticalWin.JPG"
+            alt="image of vertical win"
+          />
+          <img
+            class="instructions__example"
+            src="../img/diagonalWin.JPG"
+            alt="image of diagonal win"
+          />
         </div>
       </div>
 
       <div class="other-games">
-        <img class="other-games_img" src="../img/blankSquare.jpg" alt="" />
-        <img class="other-games_img" src="../img/blankSquare.jpg" alt="" />
-        <img class="other-games_img" src="../img/blankSquare.jpg" alt="" />
-        <img class="other-games_img" src="../img/blankSquare.jpg" alt="" />
+        <img
+          class="other-games__img"
+          src="../img/solitaire.png"
+          alt="Solitaire image"
+        />
+        <img
+          class="other-games__img"
+          src="../img/tetrus.jpg"
+          alt="Tetrus Image"
+        />
+        <img
+          class="other-games__img"
+          src="../img/bubbleShooter.jpg"
+          alt="Bubble Shooter Image"
+        />
+        <img
+          class="other-games__img"
+          src="../img/bubbleShooter.jpg"
+          alt="Bubble Shooter Image"
+        />
       </div>
     </main>
     <footer class="footer">

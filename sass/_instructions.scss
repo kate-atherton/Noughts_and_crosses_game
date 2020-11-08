@@ -1,27 +1,26 @@
 .instructions {
   grid-row: 2 / span 1;
-
-  &__section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: var(--color-grey-dark-3);
-    color: white;
-  }
+  background-color: var(--color-grey-light-1);
+  display: grid;
+  grid-template-rows: 0.75fr 2fr 1.5fr;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    align-self: end;
+    color: var(--color-grey-dark-1);
   }
 
   &__icon {
     height: 3rem;
     width: 3rem;
     padding: 0 0.5rem;
-    fill: white;
+    fill: var(--color-grey-dark-1);
   }
 
   &__header-text {
@@ -32,7 +31,7 @@
 
   &__text {
     font-size: 2rem;
-    padding: 0.5rem;
+    padding: 1.5rem;
 
     &::before {
       content: "";
@@ -67,5 +66,6 @@
   &__example {
     width: 12rem;
     padding: 0.5rem;
+    border-radius: 0.5rem;
   }
 }
