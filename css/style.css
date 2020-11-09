@@ -147,7 +147,9 @@ body {
     align-items: center; }
   .game__choose {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    justify-content: center;
+    width: 100%; }
   .game__choose-text {
     color: white;
     padding: 0.5rem;
@@ -155,26 +157,33 @@ body {
   .game__selectors {
     padding: 1rem;
     cursor: auto; }
-  .game__turn-selector, .game__turn-image {
-    width: 6rem;
-    padding: 0.5rem; }
   .game__turn-selector {
-    border-radius: 25%;
+    margin-left: 0.75rem;
+    width: 12rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
     cursor: pointer; }
   .game__active {
     cursor: auto;
-    border-bottom: 2px solid var(--color-primary); }
+    border-bottom: 2px solid #fff; }
   .game__turn {
     display: flex;
     align-items: center;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     visibility: hidden; }
+  .game__turn-image {
+    width: 3.5rem;
+    padding: 0.5rem; }
   .game__turn-text {
     margin-left: 0.5rem;
-    font-size: 1.5rem; }
+    font-size: 1.5rem;
+    color: white; }
   .game__board {
-    position: relative; }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; }
   .game__table {
     display: grid;
     grid-template: repeat(3, 1fr)/repeat(3, 1fr);
@@ -185,11 +194,8 @@ body {
     height: 18rem;
     border-radius: 0.5rem; }
   .game__button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
+    width: 40%;
+    margin-top: 3rem;
     background-color: var(--color-secondary);
     padding: 1rem 2rem;
     border-radius: 1rem;
@@ -198,9 +204,14 @@ body {
     text-transform: uppercase;
     box-shadow: var(--shadow-dark);
     transition: all 0.2s; }
-    .game__button:hover, .game__button:active {
+    .game__button:hover {
       background-color: var(--color-secondary-dark);
-      cursor: pointer; }
+      cursor: pointer;
+      transform: translateY(-1px); }
+    .game__button:active {
+      background-color: var(--color-secondary-dark);
+      cursor: pointer;
+      transform: translateY(0); }
 
 .instructions {
   grid-row: 2 / span 1;

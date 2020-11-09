@@ -3,10 +3,10 @@ const CROSS_PATH = "img/crossImage.jpg";
 const BLANK_PATH = "img/blankSquare.jpg";
 let computerPath = CROSS_PATH;
 let playerPath = CIRCLE_PATH;
-const CIRCLE_PATH_GREY = "img/circleImageGrey.jpg";
-const CROSS_PATH_GREY = "img/crossImageGrey.jpg";
-let computerPathGrey = CROSS_PATH_GREY;
-let playerPathGrey = CIRCLE_PATH_GREY;
+const CIRCLE_PATH_TURN = "img/circleImageTurn.jpg";
+const CROSS_PATH_TURN = "img/crossImageTurn.jpg";
+let computerPathGrey = CROSS_PATH_TURN;
+let playerPathGrey = CIRCLE_PATH_TURN;
 
 const middleSquare = { x: 1, y: 1 };
 
@@ -58,8 +58,6 @@ const playerTurn = () => {
     }
   });
 };
-
-//add x notification saying your turn..
 
 const startRound = () => {
   grid.classList.remove("inactive");
