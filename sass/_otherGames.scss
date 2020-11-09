@@ -1,10 +1,10 @@
 .other-games {
   grid-row: 3 / span 1;
   display: grid;
-  grid-template-rows: 0.75fr 2fr;
+  grid-template-rows: 0.75fr 3.5fr;
 
   align-items: center;
-  background-color: #fff;
+  background-color: #eeebea;
   text-align: center;
 
   &__header {

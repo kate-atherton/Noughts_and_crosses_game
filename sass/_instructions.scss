@@ -5,7 +5,6 @@
   grid-template-rows: 0.75fr 2fr 1.5fr;
   justify-items: center;
   align-items: center;
-  text-align: center;
 
   &__header {
     display: flex;
@@ -22,15 +21,21 @@
     fill: var(--color-grey-dark-1);
   }
 
+  &__texts {
+    margin-left: 30%;
+    margin-right: 25%;
+  }
+
   &__text {
+    text-align: left;
     font-size: 2rem;
     padding: 1.5rem;
 
     &::before {
       content: "";
       display: inline-block;
-      height: 1rem;
-      width: 1rem;
+      height: 1.2rem;
+      width: 1.2rem;
       margin-right: 0.7rem;
 
       // Older browsers
@@ -39,7 +44,7 @@
 
       //Newer browsers - masks
       @supports (-webkit-mask-image: url()) or (mask-image: url()) {
-        background-color: white;
+        background-color: black;
         -webkit-mask-image: url(../img/SVG/chevron-thin-right.svg);
         -webkit-mask-size: cover;
         mask-image: url(../img/SVG/chevron-thin-right.svg);

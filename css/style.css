@@ -156,7 +156,7 @@ body {
     padding: 1rem;
     cursor: auto; }
   .game__turn-selector, .game__turn-image {
-    width: 5rem;
+    width: 6rem;
     padding: 0.5rem; }
   .game__turn-selector {
     border-radius: 25%;
@@ -178,7 +178,7 @@ body {
   .game__table {
     display: grid;
     grid-template: repeat(3, 1fr)/repeat(3, 1fr);
-    grid-gap: 1rem;
+    grid-gap: 1.2rem;
     justify-items: center;
     box-shadow: var(--shadow-light); }
   .game__square {
@@ -208,8 +208,7 @@ body {
   display: grid;
   grid-template-rows: 0.75fr 2fr 1.5fr;
   justify-items: center;
-  align-items: center;
-  text-align: center; }
+  align-items: center; }
   .instructions__header {
     display: flex;
     align-items: center;
@@ -221,20 +220,24 @@ body {
     width: 3rem;
     padding: 0 0.5rem;
     fill: var(--color-grey-dark-1); }
+  .instructions__texts {
+    margin-left: 30%;
+    margin-right: 25%; }
   .instructions__text {
+    text-align: left;
     font-size: 2rem;
     padding: 1.5rem; }
     .instructions__text::before {
       content: "";
       display: inline-block;
-      height: 1rem;
-      width: 1rem;
+      height: 1.2rem;
+      width: 1.2rem;
       margin-right: 0.7rem;
       background-image: url(../img/SVG/chevron-thin-right.svg);
       background-size: cover; }
       @supports (-webkit-mask-image: url()) or (mask-image: url()) {
         .instructions__text::before {
-          background-color: white;
+          background-color: black;
           -webkit-mask-image: url(../img/SVG/chevron-thin-right.svg);
           -webkit-mask-size: cover;
           mask-image: url(../img/SVG/chevron-thin-right.svg);
@@ -253,9 +256,9 @@ body {
 .other-games {
   grid-row: 3 / span 1;
   display: grid;
-  grid-template-rows: 0.75fr 2fr;
+  grid-template-rows: 0.75fr 3.5fr;
   align-items: center;
-  background-color: #fff;
+  background-color: #eeebea;
   text-align: center; }
   .other-games__header {
     align-self: end;
