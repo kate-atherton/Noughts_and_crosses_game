@@ -45,11 +45,11 @@
     padding: 0.5rem;
     border-radius: 1rem;
     cursor: pointer;
-  }
 
-  &__active {
-    cursor: auto;
-    border-bottom: 2px solid #fff;
+    &--active {
+      cursor: auto;
+      border-bottom: 2px solid #fff;
+    }
   }
 
   &__turn {
@@ -72,18 +72,25 @@
   }
 
   &__board {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: min-content min-content;
     align-items: center;
+    justify-items: center;
     text-align: center;
   }
 
   &__table {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     grid-gap: 1.2rem;
     justify-items: center;
     box-shadow: var(--shadow-light);
+
+    &--inactive {
+      opacity: 0.4;
+    }
   }
 
   &__square {
@@ -114,5 +121,31 @@
       cursor: pointer;
       transform: translateY(0);
     }
+  }
+
+  @keyframes messageAppear {
+    0% {
+      width: 0;
+      height: 0;
+      font-size: 0;
+    }
+    100% {
+      width: 50%;
+    }
+  }
+
+  &__message {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    align-self: center;
+    justify-self: center;
+    z-index: 100;
+    width: 50%;
+    font-size: 2rem;
+    background-color: var(--color-primary);
+    padding: 1rem 2rem;
+    color: white;
+    border-radius: 1rem;
+    animation: messageAppear 0.2s ease-out;
   }
 }

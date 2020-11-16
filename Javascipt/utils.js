@@ -98,16 +98,3 @@ const getUniqueXYValues = (array) => {
   }
   return null;
 };
-
-const changeMessageStyle = (message) => {
-  message.style.position = "absolute";
-  message.style.margin = "auto";
-  message.style.left = "0";
-  message.style.right = "0";
-  message.style.top = "0";
-  message.style.bottom = "0";
-  message.style.textAlign = "center";
-  message.style.fontSize = "30px";
-  message.style.fontWeight = "600";
-  message.style.marginTop = "37%";
-};

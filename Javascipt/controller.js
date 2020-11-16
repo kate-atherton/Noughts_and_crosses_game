@@ -5,8 +5,10 @@ let computerPath = CROSS_PATH;
 let playerPath = CIRCLE_PATH;
 const CIRCLE_PATH_TURN = "img/circleImageTurn.jpg";
 const CROSS_PATH_TURN = "img/crossImageTurn.jpg";
-let computerPathGrey = CROSS_PATH_TURN;
-let playerPathGrey = CIRCLE_PATH_TURN;
+let computerPathTurn = CROSS_PATH_TURN;
+let playerPathTurn = CIRCLE_PATH_TURN;
+
+initialRender();
 
 const middleSquare = { x: 1, y: 1 };
 
@@ -60,7 +62,7 @@ const playerTurn = () => {
 };
 
 const startRound = () => {
-  grid.classList.remove("inactive");
+  renderStart();
   model.resetTurn();
   model.resetPlayerArrays();
   model.updateCurrentlyPlaying(true);
@@ -69,29 +71,12 @@ const startRound = () => {
   let turn = model.whosTurn();
   renderGrid(gridInfoPlayer, gridInfoComp);
   renderTurn(turn);
-  whosTurn.style.visibility = "visible";
-  gameArea.style.backgroundColor = "none";
-  startButton.remove();
-  drawMessage.remove();
-  lostMessage.remove();
   playerTurn();
 };
 
 const gameOver = (status) => {
-  if (status === "draw") {
-    drawMessage.innerHTML = "It's a draw!";
-    changeMessageStyle(drawMessage);
-    gameArea.appendChild(drawMessage);
-  } else {
-    lostMessage.innerHTML = "Game over!";
-    changeMessageStyle(lostMessage);
-    gameArea.appendChild(lostMessage);
-  }
-  gameArea.appendChild(startButton);
-  startButton.innerHTML = "Play again";
+  renderResult(status);
   model.updateCurrentlyPlaying(false);
-  grid.classList.add("inactive");
-  whosTurn.style.visibility = "hidden";
 };
 
 const model = initialiseModel(onTurnUpdate);
