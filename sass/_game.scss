@@ -1,24 +1,39 @@
 .game {
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(16, 29, 44, 0.8),
-      rgba(11, 19, 29, 0.8)
-    ),
-    url(../img/background2.jpg);
-  backdrop-filter: blur(10px);
-  background-size: cover;
+  background: #2c3e50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right bottom #405475,
+    #427380
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #405475,
+    #427380
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   padding: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &__wrapper {
-    width: min-content;
-    padding: 3% 15% 7% 15%;
+    background-color: #1e2e4b;
+    width: 75%;
     height: min-content;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: var(--shadow-dark);
+    border-radius: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  &__header {
+    background-color: #243656;
+    width: 100%;
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    padding: 3rem;
   }
 
   &__choose {
@@ -26,6 +41,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-top: 3rem;
   }
 
   &__choose-text {
@@ -77,6 +93,7 @@
     align-items: center;
     justify-items: center;
     text-align: center;
+    padding: 3% 20%;
   }
 
   &__table {
@@ -86,7 +103,7 @@
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     grid-gap: 1.2rem;
     justify-items: center;
-    box-shadow: var(--shadow-light);
+    background-color: #38b99f;
 
     &--inactive {
       opacity: 0.4;
@@ -95,12 +112,11 @@
 
   &__square {
     height: 18rem;
-    border-radius: 0.5rem;
   }
 
   &__button {
     width: 40%;
-    margin-top: 3rem;
+    margin-top: 5rem;
     background-color: var(--color-secondary);
     padding: 1rem 2rem;
     border-radius: 1rem;

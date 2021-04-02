@@ -1,7 +1,7 @@
 .footer {
-  background-color: var(--color-primary);
+  background-color: rgb(64, 84, 117);
   grid-column: full-start / full-end;
-  grid-row: 3 / span 1;
+  grid-row: 2 / span 1;
   padding: 5rem;
 }
 
@@ -29,7 +29,7 @@
 
   &__link:hover,
   &__link:active {
-    background-color: var(--color-primary-light);
+    background-color: rgba(#fff, 0.05);
     transform: translateY(-3px);
   }
 }

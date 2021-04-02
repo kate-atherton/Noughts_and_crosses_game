@@ -35,8 +35,8 @@ crossButton.onclick = () => {
     playerPathTurn = CROSS_PATH_TURN;
     computerPath = CIRCLE_PATH;
     playerPath = CROSS_PATH;
-    crossButton.classList.add("game__turn-selector__active");
-    circleButton.classList.remove("game__turn-selector__active");
+    crossButton.classList.add("game__turn-selector--active");
+    circleButton.classList.remove("game__turn-selector--active");
   }
 };
 
@@ -47,8 +47,8 @@ circleButton.onclick = () => {
     playerPathTurn = CIRCLE_PATH_TURN;
     computerPath = CROSS_PATH;
     playerPath = CIRCLE_PATH;
-    crossButton.classList.remove("game__turn-selector__active");
-    circleButton.classList.add("game__turn-selector__active");
+    crossButton.classList.remove("game__turn-selector--active");
+    circleButton.classList.add("game__turn-selector--active");
   }
 };
 

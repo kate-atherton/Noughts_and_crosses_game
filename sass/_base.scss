@@ -4,7 +4,7 @@
   --color-primary-dark: #0a121b;
   --color-primary-light: #182c42;
 
-  --color-secondary: #f5a271;
+  --color-secondary: #1e2e4b;
   --color-secondary-dark: #965e3e;
 
   --color-grey-light-1: #f9f7f6;
@@ -57,14 +57,15 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 10vh min-content 20vh;
+  grid-template-rows: min-content 20vh;
+  //previous header had 10vh
   grid-template-columns:
-    [full-start] minmax(4rem, 1fr)
-    [full-end sidebar-start] 8rem [sidebar-end];
+    [sidebar-start] 8rem [sidebar-end full-start] minmax(4rem, 1fr)
+    [full-end];
 }
 
 .main {
   display: grid;
   grid-column: full-start / full-end;
-  grid-template-rows: 110vh 70vh 70vh;
+  grid-template-rows: 120vh 70vh 70vh;
 }
