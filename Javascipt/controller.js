@@ -1,82 +1,43 @@
-const CIRCLE_PATH = "img/circleImage.jpg";
-const CROSS_PATH = "img/crossImage.jpg";
-const BLANK_PATH = "img/blankSquare.jpg";
-let computerPath = CROSS_PATH;
-let playerPath = CIRCLE_PATH;
-const CIRCLE_PATH_TURN = "img/circleImageTurn.jpg";
-const CROSS_PATH_TURN = "img/crossImageTurn.jpg";
-let computerPathTurn = CROSS_PATH_TURN;
-let playerPathTurn = CIRCLE_PATH_TURN;
-
-initialRender();
-
-const middleSquare = { x: 1, y: 1 };
-
-const squareCoordinates = gameSquares.map((gameSquare) => {
-  return getCoordsFromHtml(gameSquare);
-});
-
-const currentlyPlaying = () => {
-  if (model.checkCurrentlyPlaying()) {
-    return true;
+const controlPlayerMove = (square) => {
+  if (model.state.turn === "player" && model.squareFree(square.id)) {
+    makePlayerMove(square.id);
+    view.createBoard(model.state);
+    model.compTurn();
+    view.createBoard(model.state);
   }
 };
 
-const firstTurn = () => {
-  if (model.checkFirstTurn()) {
-    return true;
+const controlSelector = (selector) => {
+  if (!selector.classList.contains("game__turn-selector--active")) {
+    model.switchSelector();
+    view.switchSelectors();
   }
 };
 
-const makePlayerMove = (coords) => {
-  if (
-    model.whosTurn() === "player" &&
-    squareFree(coords, model.readPlayerArray(), model.readComputerArray())
-  ) {
-    model.makePlayerMove(coords);
-  }
+const init = () => {
+  view.createBoard(model.state);
+  view.addHandlerPlayerClick(controlPlayerMove);
+  view.addHandlerSelectorClick(controlSelector);
 };
 
-const makeComputerMove = (coords) => {
-  model.makeComputerMove(coords);
-};
+init();
 
-const onTurnUpdate = () => {
-  let gridInfoPlayer = model.readPlayerArray();
-  let gridInfoComp = model.readComputerArray();
-  renderGrid(gridInfoPlayer, gridInfoComp);
-  renderTurn(model.whosTurn());
-  if (model.whosTurn() === "computer") {
-    setTimeout(() => {
-      computerTurn(model.readPlayerArray(), model.readComputerArray());
-    }, 1000);
-  }
-};
+// const startRound = () => {
+//   renderStart();
+//   model.resetTurn();
+//   model.resetPlayerArrays();
+//   model.updateCurrentlyPlaying(true);
+//   let gridInfoPlayer = model.readPlayerArray();
+//   let gridInfoComp = model.readComputerArray();
+//   let turn = model.whosTurn();
+//   renderGrid(gridInfoPlayer, gridInfoComp);
+//   renderTurn(turn);
+//   playerTurn();
+// };
 
-const playerTurn = () => {
-  gameSquares.forEach((gameSquare) => {
-    if (model.checkCurrentlyPlaying()) {
-      gameSquare.addEventListener("click", onPlayerClick);
-    }
-  });
-};
+// const gameOver = (status) => {
+//   renderResult(status);
+//   model.updateCurrentlyPlaying(false);
+// };
 
-const startRound = () => {
-  renderStart();
-  model.resetTurn();
-  model.resetPlayerArrays();
-  model.updateCurrentlyPlaying(true);
-  let gridInfoPlayer = model.readPlayerArray();
-  let gridInfoComp = model.readComputerArray();
-  let turn = model.whosTurn();
-  renderGrid(gridInfoPlayer, gridInfoComp);
-  renderTurn(turn);
-  playerTurn();
-};
-
-const gameOver = (status) => {
-  renderResult(status);
-  model.updateCurrentlyPlaying(false);
-};
-
-const model = initialiseModel(onTurnUpdate);
+// const model = initialiseModel(onTurnUpdate);
