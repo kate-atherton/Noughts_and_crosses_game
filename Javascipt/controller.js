@@ -1,10 +1,26 @@
+const controlStart = () => {
+  model.resetBoard();
+  view.createBoard(model.state);
+  view.resetView();
+};
+
 const controlPlayerMove = (square) => {
-  if (model.state.turn === "player" && model.squareFree(square.id)) {
-    makePlayerMove(square.id);
+  if (
+    model.state.currentlyPlaying === true &&
+    model.state.turn === "player" &&
+    model.squareFree(square.id)
+  ) {
+    model.makePlayerMove(square.id);
     view.createBoard(model.state);
-    model.compTurn();
-    view.createBoard(model.state);
+    model.checkResult(controlResult);
+    setTimeout(controlCompMove, 1000);
   }
+};
+
+const controlCompMove = () => {
+  model.compTurn();
+  view.createBoard(model.state);
+  model.checkResult(controlResult);
 };
 
 const controlSelector = (selector) => {
@@ -14,30 +30,16 @@ const controlSelector = (selector) => {
   }
 };
 
+const controlResult = (result) => {
+  model.state.currentlyPlaying = false;
+  view.renderResult(result);
+};
+
 const init = () => {
-  view.createBoard(model.state);
-  view.addHandlerPlayerClick(controlPlayerMove);
+  view.addHandlerFlip();
   view.addHandlerSelectorClick(controlSelector);
+  view.addHandlerStartClick(controlStart);
+  view.addHandlerPlayerClick(controlPlayerMove);
 };
 
 init();
-
-// const startRound = () => {
-//   renderStart();
-//   model.resetTurn();
-//   model.resetPlayerArrays();
-//   model.updateCurrentlyPlaying(true);
-//   let gridInfoPlayer = model.readPlayerArray();
-//   let gridInfoComp = model.readComputerArray();
-//   let turn = model.whosTurn();
-//   renderGrid(gridInfoPlayer, gridInfoComp);
-//   renderTurn(turn);
-//   playerTurn();
-// };
-
-// const gameOver = (status) => {
-//   renderResult(status);
-//   model.updateCurrentlyPlaying(false);
-// };
-
-// const model = initialiseModel(onTurnUpdate);

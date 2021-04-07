@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+    <link rel="icon" href="img/verticalWin.JPG" type="image/png"/>
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
@@ -22,213 +22,141 @@
       <button class="sidebar__nav-btn"></button>
     </div>
     <main class="main">
-      <div class="game">
-        <div class="game__wrapper">
-          <header class="game__header">Noughts and Crosses</header>
-          <div class="game__choose">
-            <p class="game__choose-text">Choose your weapon</p>
-            <div class="game__selectors">
-              <img
-                id="circle"
-                class="game__turn-selector game__turn-selector--active"
-                src="../img/circleImageChoose.jpg"
-                alt="Circle image"
-              />
-              <img
-                id="cross"
-                class="game__turn-selector"
-                src="../img/crossImageChoose.jpg"
-                alt="Cross image"
-              />
+      <div class="flipcard">
+        <div class="flipcard-inner">
+            <div class="game__wrapper flipcard-front">
+              <h1 class="heading">Noughts and Crosses</h1>
+              <div class="game__choose-wrapper">
+                <div class="game__choose game__choose--active">
+                  <p class="game__choose-text">Choose your weapon</p>
+                  <div class="game__selectors">
+                    <img
+                      id="nought"
+                      class="game__selector game__selector--active"
+                      src="../img/noughtImageChoose.jpg"
+                      alt="Nought image"
+                    />
+                    <img
+                      id="cross"
+                      class="game__selector"
+                      src="../img/crossImageChoose.jpg"
+                      alt="Cross image"
+                    />
+                  </div>
+                </div>
+                <div class="game__turn">
+                  <img
+                    id="turn-image"
+                    class="game__turn-image"
+                    ,
+                    src="../img/noughtImageTurn.jpg"
+                    alt="Nought image"
+                  />
+                  <p class="game__turn-text">Turn</p>
+                </div>
+              </div>         
+    
+              <div id="game-board" class="game__board game__board--inactive">
+                  <img
+                    id="0"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="1"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="2"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="3"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="4"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="5"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="6"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="7"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                  <img
+                    id="8"
+                    class="game__square"
+                    src="../img/blankSquare.jpg"
+                    alt="Noughts and crosses square"
+                  />
+                </div>
+              <p class="game__button">Start Game</p>
             </div>
-          </div>
-          <div class="game__turn">
-            <img
-              id="turn-image"
-              class="game__turn-image"
-              ,
-              src="../img/circleImageTurn.jpg"
-              alt="Circle image"
-            />
-            <p class="game__turn-text">Turn</p>
-          </div>
-
-          <div id="game-board" class="game__board">
-            <div id="game-table" class="game__table">
+          <div id="instructions" class="instructions flipcard-back">
+            
+            <h1 class="heading">Instructions</h1>
+           
+            <div class="instructions__texts">
+              <p class="instructions__text">
+                You can choose to play with either noughts or crosses
+              </p>
+              <p class="instructions__text">
+                The objective of the game is to get three in a row.
+              </p>
+              <p class="instructions__text">
+                The player who succeeds in placing three of their marks in a
+                horizontal, vertical, or diagonal row is the winner.
+              </p>
+              <p class="instructions__text">
+                The following examples display X winning in three different ways:
+              </p>
+            </div>
+            <div class="instructions__examples">
               <img
-                id="0"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
+                class="instructions__example"
+                src="../img/horizontalWin.JPG"
+                alt="image of horizontal win"
               />
               <img
-                id="1"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
+                class="instructions__example"
+                src="../img/verticalWin.JPG"
+                alt="image of vertical win"
               />
               <img
-                id="2"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
-              />
-              <img
-                id="3"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
-              />
-              <img
-                id="4"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
-              />
-              <img
-                id="5"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
-              />
-              <img
-                id="6"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
-              />
-              <img
-                id="7"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
-              />
-              <img
-                id="8"
-                class="game__square"
-                src="../img/blankSquare.jpg"
-                alt="Noughts and crosses square"
+                class="instructions__example"
+                src="../img/diagonalWin.JPG"
+                alt="image of diagonal win"
               />
             </div>
           </div>
         </div>
+        
+
       </div>
-
-      <div id="instructions" class="instructions">
-        <div class="instructions__header">
-          <svg class="instructions__icon">
-            <use xlink:href="../img/sprite.svg#icon-cogs"></use>
-          </svg>
-          <h2 class="heading-2">Instructions</h2>
-          <svg class="instructions__icon">
-            <use xlink:href="../img/sprite.svg#icon-cogs"></use>
-          </svg>
-        </div>
-        <div class="instructions__texts">
-          <p class="instructions__text">
-            You can choose to play with either noughts or crosses
-          </p>
-          <p class="instructions__text">
-            The objective of the game is to get three in a row.
-          </p>
-          <p class="instructions__text">
-            The player who succeeds in placing three of their marks in a
-            horizontal, vertical, or diagonal row is the winner.
-          </p>
-          <p class="instructions__text">
-            The following examples display X winning in three different ways:
-          </p>
-        </div>
-        <div class="instructions__examples">
-          <img
-            class="instructions__example"
-            src="../img/horizontalWin.JPG"
-            alt="image of horizontal win"
-          />
-          <img
-            class="instructions__example"
-            src="../img/verticalWin.JPG"
-            alt="image of vertical win"
-          />
-          <img
-            class="instructions__example"
-            src="../img/diagonalWin.JPG"
-            alt="image of diagonal win"
-          />
-        </div>
-      </div>
-
-      <div class="other-games">
-        <h2 class="other-games__header heading-2">Other Games</h2>
-        <div class="other-games__images">
-          <div class="other-games__game">
-            <div class="other-games__wrapper">
-              <button class="other-games__btn">Play</button>
-              <img
-                class="other-games__img"
-                src="../img/solitaire.png"
-                alt="Solitaire image"
-              />
-            </div>
-            <p class="other-games__text">Solitaire</p>
-          </div>
-
-          <div class="other-games__game">
-            <div class="other-games__wrapper">
-              <button class="other-games__btn">Play</button>
-              <img
-                class="other-games__img"
-                src="../img/tetrus.jpg"
-                alt="Tetrus Image"
-              />
-            </div>
-            <p class="other-games__text">Tetris</p>
-          </div>
-
-          <div class="other-games__game">
-            <div class="other-games__wrapper">
-              <button class="other-games__btn">Play</button>
-              <img
-                class="other-games__img"
-                src="../img/bubbleShooter.jpg"
-                alt="Bubble Shooter Image"
-              />
-            </div>
-            <p class="other-games__text">Bubble Shooter</p>
-          </div>
-
-          <div class="other-games__game">
-            <div class="other-games__wrapper">
-              <button class="other-games__btn">Play</button>
-              <img
-                class="other-games__img"
-                src="../img/spaceInvaders.png"
-                alt="Space Invaders Image"
-              />
-            </div>
-            <p class="other-games__text">Space Invaders</p>
-          </div>
-        </div>
-      </div>
+      
     </main>
-    <footer class="footer">
-      <ul class="nav">
-        <li class="nav__item">
-          <a href="#" class="nav__link">Company</a>
-        </li>
-        <li class="nav__item">
-          <a href="#" class="nav__link">Help</a>
-        </li>
-        <li class="nav__item">
-          <a href="#" class="nav__link">Contact us</a>
-        </li>
-        <li class="nav__item"><a href="#" class="nav__link">Privacy</a></li>
-        <li class="nav__item">
-          <a href="#" class="nav__link">Terms</a>
-        </li>
-      </ul>
-      <p class="copyright">&copy; Copyright (c) 2020, KA Games</p>
-    </footer>
   </body>
   <script type="text/javascript" src="Javascipt\view.js"></script>
   <script type="text/javascript" src="Javascipt\model.js"></script>

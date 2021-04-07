@@ -1,33 +1,29 @@
 .instructions {
-  grid-row: 2 / span 1;
-  background-color: var(--color-grey-light-1);
-  display: grid;
-  grid-template-rows: 0.75fr 2fr 1.5fr;
-  justify-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  padding-bottom: 10rem;
 
   &__header {
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    align-self: end;
   }
 
   &__icon {
     height: 3rem;
     width: 3rem;
     padding: 0 0.5rem;
-    fill: var(--color-grey-dark-1);
+    fill: white;
   }
 
   &__texts {
-    margin-left: 30%;
-    margin-right: 25%;
+    width: 80rem;
   }
 
   &__text {
-    text-align: left;
+    text-align: center;
     font-size: 2rem;
     padding: 1.5rem;
 
@@ -44,7 +40,7 @@
 
       //Newer browsers - masks
       @supports (-webkit-mask-image: url()) or (mask-image: url()) {
-        background-color: black;
+        background-color: white;
         -webkit-mask-image: url(../img/SVG/chevron-thin-right.svg);
         -webkit-mask-size: cover;
         mask-image: url(../img/SVG/chevron-thin-right.svg);
@@ -58,11 +54,11 @@
     padding: 2rem;
     display: flex;
     justify-content: space-around;
-    width: 25%;
+    width: 70rem;
   }
 
   &__example {
-    width: 12rem;
+    width: 20rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
   }

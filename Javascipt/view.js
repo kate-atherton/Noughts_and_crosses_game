@@ -1,8 +1,16 @@
 const gameSquares = document.querySelectorAll(".game__square");
-const shapeSelectors = document.querySelectorAll(".game__turn-selector");
-
-// const CIRCLE_PATH_TURN = "img/circleImageTurn.jpg";
-// const CROSS_PATH_TURN = "img/crossImageTurn.jpg";
+const shapeSelectorWrapper = document.querySelector(".game__choose");
+const shapeSelectors = document.querySelectorAll(".game__selector");
+const startButton = document.querySelector(".game__button");
+const gameWrapper = document.querySelector(".game__wrapper");
+const gameBoard = document.querySelector(".game__board");
+const gameTurn = document.querySelector(".game__turn");
+const gameTurnImage = document.querySelector(".game__turn-image");
+const NOUGHT_PATH_TURN = "img/noughtImageTurn.jpg";
+const CROSS_PATH_TURN = "img/crossImageTurn.jpg";
+const flipButton = document.querySelector(".sidebar__nav-btn");
+const flipCardInner = document.querySelector(".flipcard-inner");
+let resultMessage;
 
 const view = {
   createBoard: (state) => {
@@ -15,6 +23,12 @@ const view = {
         gameSquares[index].src = state.blankPath;
       }
     });
+
+    if (state.turn === "player") {
+      gameTurnImage.src = state.playerPathTurn;
+    } else {
+      gameTurnImage.src = state.computerPathTurn;
+    }
   },
 
   addHandlerPlayerClick: (handler) => {
@@ -35,116 +49,46 @@ const view = {
 
   switchSelectors: () => {
     shapeSelectors.forEach((selector) => {
-      selector.classList.toggle("game__turn-selector--active");
+      selector.classList.toggle("game__selector--active");
+    });
+  },
+
+  addHandlerStartClick: (handler) => {
+    startButton.addEventListener("click", () => {
+      return handler();
+    });
+  },
+
+  renderResult: (result) => {
+    gameBoard.classList.add("game__board--inactive");
+    gameTurn.classList.remove("game__turn--active");
+    shapeSelectorWrapper.classList.add("game__choose--active");
+    startButton.classList.add("game__button-active");
+    startButton.innerHTML = "Play again";
+
+    resultMessage = document.createElement("p");
+    gameWrapper.appendChild(resultMessage);
+    resultMessage.classList.add("game__message");
+    resultMessage.innerHTML = `${
+      result === 0 ? "It's a draw" : "Computer wins"
+    }`;
+  },
+
+  resetView: () => {
+    gameBoard.classList.remove("game__board--inactive");
+    startButton.innerHTML = "Reset Game";
+    shapeSelectorWrapper.classList.remove("game__choose--active");
+    gameTurn.classList.add("game__turn--active");
+
+    if (document.contains(resultMessage)) {
+      resultMessage.remove();
+    }
+    gameBoard.classList.remove("game__board--inactive");
+  },
+
+  addHandlerFlip: () => {
+    flipButton.addEventListener("click", () => {
+      flipCardInner.classList.toggle("flipcard-inner--flip");
     });
   },
 };
-
-// const startButton = document.getElementById("start-button");
-// const crossButton = document.getElementById("cross");
-// const circleButton = document.getElementById("circle");
-// const gameArea = document.querySelector(".game__board");
-// const gameTable = document.querySelector(".game__table");
-// const whosTurn = document.querySelector(".game__turn");
-// const whosTurnImage = document.querySelector(".game__turn-image");
-// const gameSquares = [...document.querySelectorAll(".game__square")];
-// let startButton;
-// let drawMessage;
-// let loseMessage;
-
-// const initialRender = () => {
-//   startButton = document.createElement("p");
-//   startButton.innerHTML = "Start Game";
-//   gameArea.appendChild(startButton);
-//   startButton.classList.add("game__button");
-//   startButton.onclick = () => {
-//     startRound();
-//   };
-// };
-
-// //need to adapt so doesn't interact with controller
-// let onPlayerClick = ({ target }) => {
-//   if (model.whosTurn() === "player") {
-//     const coords = getCoordsFromHtml(target);
-//     makePlayerMove(coords);
-//   }
-// };
-
-// //need to adapt so doesn't interact with controller
-// crossButton.onclick = () => {
-//   if (!model.checkCurrentlyPlaying()) {
-//     computerPathTurn = CIRCLE_PATH_TURN;
-//     playerPathTurn = CROSS_PATH_TURN;
-//     computerPath = CIRCLE_PATH;
-//     playerPath = CROSS_PATH;
-//     crossButton.classList.add("game__turn-selector--active");
-//     circleButton.classList.remove("game__turn-selector--active");
-//   }
-// };
-
-// //need to adapt so doesn't interact with controller
-// circleButton.onclick = () => {
-//   if (!model.checkCurrentlyPlaying()) {
-//     computerPathTurn = CROSS_PATH_TURN;
-//     playerPathTurn = CIRCLE_PATH_TURN;
-//     computerPath = CROSS_PATH;
-//     playerPath = CIRCLE_PATH;
-//     crossButton.classList.remove("game__turn-selector--active");
-//     circleButton.classList.add("game__turn-selector--active");
-//   }
-// };
-
-// const renderGrid = (gridInfoPlayer, gridInfoComp) => {
-//   squareCoordinates.forEach((coords) => {
-//     let squareId = getIdFromCoordinates(coords);
-//     squareId.src = BLANK_PATH;
-//   });
-
-//   gridInfoPlayer.forEach((coords) => {
-//     let squareId = getIdFromCoordinates(coords);
-//     squareId.src = playerPath;
-//   });
-//   gridInfoComp.forEach((coords) => {
-//     let squareId = getIdFromCoordinates(coords);
-//     squareId.src = computerPath;
-//   });
-// };
-
-// const renderTurn = (turn) => {
-//   if (turn === "player") {
-//     whosTurnImage.src = playerPathTurn;
-//   } else {
-//     whosTurnImage.src = computerPathTurn;
-//   }
-// };
-
-// const renderStart = () => {
-//   whosTurn.style.visibility = "visible";
-//   startButton.remove();
-//   if (document.contains(drawMessage)) {
-//     drawMessage.remove();
-//   } else if (document.contains(loseMessage)) {
-//     loseMessage.remove();
-//   }
-//   gameTable.classList.remove("game__table--inactive");
-// };
-
-// const renderResult = (status) => {
-//   gameTable.classList.add("game__table--inactive");
-//   if (status === "draw") {
-//     drawMessage = document.createElement("p");
-//     drawMessage.innerHTML = "It's a draw!";
-//     gameArea.appendChild(drawMessage);
-//     drawMessage.classList.add("game__message");
-//   } else {
-//     loseMessage = document.createElement("p");
-//     loseMessage.innerHTML = "Cross wins!";
-//     gameArea.appendChild(loseMessage);
-//     const addLoseMessage = () => {
-//       loseMessage.classList.add("game__message");
-//     };
-//     setTimeout(addLoseMessage);
-//   }
-//   initialRender();
-//   startButton.innerHTML = "Play again";
-// };

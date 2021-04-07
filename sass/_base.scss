@@ -57,15 +57,11 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: min-content 20vh;
-  //previous header had 10vh
   grid-template-columns:
     [sidebar-start] 8rem [sidebar-end full-start] minmax(4rem, 1fr)
     [full-end];
 }
 
 .main {
-  display: grid;
   grid-column: full-start / full-end;
-  grid-template-rows: 120vh 70vh 70vh;
 }

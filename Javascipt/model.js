@@ -1,56 +1,14 @@
 const human = -1;
 const computer = +1;
 let computerShape = cross;
-let playerShape = circle;
+let playerShape = nought;
 
-const CIRCLE_PATH = "img/circleImage.jpg";
+const NOUGHT_PATH = "img/noughtImage.jpg";
 const CROSS_PATH = "img/crossImage.jpg";
 const BLANK_PATH = "img/blankSquare.jpg";
 
-const model = {
-  state: {
-    moveCount: 0,
-    gameBoard: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    turn: "player",
-    computerPath: CROSS_PATH,
-    playerPath: CIRCLE_PATH,
-    blankPath: BLANK_PATH,
-  },
-
-  squareFree: (square) => {
-    if (model.state.gameBoard[square] === 0) {
-      return true;
-    }
-  },
-
-  //decides computer turn
-  compTurn: () => {
-    let square;
-    let numEmpty = 9 - model.state.moveCount;
-
-    //if first move, random choice
-    if (model.state.moveCount === 0) {
-      square = parseInt(Math.random() * 3);
-    }
-    //otherwise, call minimax algorithm to decide move
-    else {
-      square = minimax(model.state.gameBoard, numEmpty, computer);
-    }
-
-    makeCompMove(square[0]);
-  },
-
-  switchSelector: () => {
-    model.state.computerPath = [
-      model.state.playerPath,
-      (model.state.playerPath = model.state.computerPath),
-    ][0];
-  },
-};
-
-const updateTurn = (turn) => {
-  model.state.turn = turn;
-};
+const CROSS_TURN = "img/crossImageTurn.jpg";
+const NOUGHT_TURN = "img/noughtImageTurn.jpg";
 
 const gameOver = (player, state) => {
   let playerMoves = [];
@@ -83,11 +41,6 @@ const gameOver = (player, state) => {
   return false;
 };
 
-//need a way of passing in what human and comp values are
-const gameOverAll = (state) => {
-  return gameOver(human, state) || gameOver(computer, state);
-};
-
 /* Function to heuristic evaluation of state. */
 const evaluateScore = (state) => {
   if (gameOver(computer, state)) {
@@ -95,6 +48,86 @@ const evaluateScore = (state) => {
   } else if (gameOver(human, state)) {
     return -1;
   }
+};
+
+const model = {
+  state: {
+    moveCount: 0,
+    gameBoard: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    turn: "player",
+    computerPath: CROSS_PATH,
+    playerPath: NOUGHT_PATH,
+    blankPath: BLANK_PATH,
+    playerPathTurn: NOUGHT_TURN,
+    computerPathTurn: CROSS_TURN,
+    currentlyPlaying: false,
+  },
+
+  resetBoard: () => {
+    console.log("Board being reset");
+    model.state.moveCount = 0;
+    model.state.gameBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    model.state.turn = "player";
+    model.state.currentlyPlaying = true;
+  },
+
+  squareFree: (square) => {
+    if (model.state.gameBoard[square] === 0) {
+      return true;
+    }
+  },
+
+  //decides computer turn
+  compTurn: () => {
+    let square;
+    let numEmpty = 9 - model.state.moveCount;
+
+    //if first move, random choice
+    if (model.state.moveCount === 0) {
+      square = parseInt(Math.random() * 3);
+    }
+    //otherwise, call minimax algorithm to decide move
+    else {
+      square = minimax(model.state.gameBoard, numEmpty, computer);
+    }
+
+    makeCompMove(square[0]);
+  },
+
+  switchSelector: () => {
+    model.state.computerPath = [
+      model.state.playerPath,
+      (model.state.playerPath = model.state.computerPath),
+    ][0];
+
+    model.state.computerPathTurn = [
+      model.state.playerPathTurn,
+      (model.state.playerPathTurn = model.state.computerPathTurn),
+    ][0];
+  },
+
+  checkResult: (handler) => {
+    if (evaluateScore(model.state.gameBoard)) {
+      return handler(evaluateScore(model.state.gameBoard));
+    } else if (model.state.moveCount === 9) {
+      return handler(0);
+    }
+  },
+
+  makePlayerMove: (square) => {
+    model.state.gameBoard[square] = -1;
+    updateTurn("computer");
+    model.state.moveCount++;
+  },
+};
+
+const updateTurn = (turn) => {
+  model.state.turn = turn;
+};
+
+//need a way of passing in what human and comp values are
+const gameOverAll = (state) => {
+  return gameOver(human, state) || gameOver(computer, state);
 };
 
 const minimax = (state, depth, player) => {
@@ -124,33 +157,20 @@ const minimax = (state, depth, player) => {
     //square is number. for them it is a cell with x and y
 
     state[square] = player;
-
     let score = minimax(state, depth - 1, -player);
-
-    // debugger;
     state[square] = 0;
     score[0] = square;
-    // debugger;
 
     if (player === 1) {
-      //   debugger;
       if (score[1] > best[1]) {
         best = score;
       }
     } else if (score[1] < best[1]) {
-      //   debugger;
       best = score;
     }
   });
 
   return best;
-};
-
-//is this repetitive? There are some differences
-const makePlayerMove = (square) => {
-  model.state.gameBoard[square] = -1;
-  updateTurn("computer");
-  model.state.moveCount++;
 };
 
 const makeCompMove = (square) => {
