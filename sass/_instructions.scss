@@ -1,10 +1,9 @@
 .instructions {
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 15% 42.5% 42.5%;
+  justify-items: center;
   align-items: center;
-  padding-bottom: 10rem;
 
   &__header {
     width: 100%;
@@ -20,6 +19,7 @@
 
   &__texts {
     width: 80rem;
+    max-width: 100%;
   }
 
   &__text {
@@ -51,10 +51,12 @@
   }
 
   &__examples {
+    align-self: start;
     padding: 2rem;
     display: flex;
     justify-content: space-around;
     width: 70rem;
+    max-width: 100%;
   }
 
   &__example {

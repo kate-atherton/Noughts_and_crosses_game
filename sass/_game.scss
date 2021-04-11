@@ -1,14 +1,9 @@
 .game {
   &__wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: 15% 13% 57% 15%;
+    justify-items: center;
     align-items: center;
-    padding-bottom: 2rem;
-  }
-
-  &__choose-wrapper {
-    height: 6rem;
   }
 
   &__choose {
@@ -28,13 +23,13 @@
   }
 
   &__selectors {
-    padding: 1rem;
+    padding: 0 1rem;
     cursor: auto;
   }
 
   &__selector {
     margin-left: 0.75rem;
-    width: 12rem;
+    width: 15rem;
     padding: 0.5rem;
     border-radius: 1rem;
     cursor: pointer;
@@ -56,7 +51,7 @@
   }
 
   &__turn-image {
-    width: 4rem;
+    width: 6rem;
     padding: 0.5rem;
   }
 
@@ -67,20 +62,30 @@
   }
 
   &__board {
+    height: 100%;
+    position: relative;
+    justify-items: stretch;
+    align-items: stretch;
+  }
+
+  &__squares-wrapper {
     display: grid;
-    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-template: repeat(3, calc(33% - 0.33rem)) / repeat(
+        3,
+        calc(33% - 0.33rem)
+      );
     grid-gap: 1rem;
-    justify-items: center;
-    background-color: #38b99f;
     cursor: pointer;
+    background-color: #38b99f;
+    height: 100%;
 
     &--inactive {
-      background-color: rgba(56, 185, 159, 0.2);
+      opacity: 0.2;
     }
   }
 
   &__square {
-    height: 16rem;
+    height: 100%;
   }
 
   &__button {
@@ -88,9 +93,8 @@
     background-color: #243656;
     padding: 1rem 2rem;
     border-radius: 1rem;
-    margin-bottom: 1rem;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-transform: uppercase;
     box-shadow: var(--shadow-dark);
     text-align: center;
@@ -119,13 +123,13 @@
   }
 
   &__message {
+    opacity: 1;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-40%, 50%);
+    transform: translate(-50%, -50%);
     text-align: center;
-    z-index: 100;
-    width: 35rem;
+    width: 30rem;
     font-size: 2rem;
     background-color: var(--color-primary);
     padding: 1rem 2rem;

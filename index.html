@@ -17,14 +17,10 @@
 
     <title>Noughts and Crosses</title>
   </head>
-  <body class="container">
-    <div class="sidebar">
-      <button class="sidebar__nav-btn"></button>
-    </div>
+  <body>
     <main class="main">
-      <div class="flipcard">
-        <div class="flipcard-inner">
-            <div class="game__wrapper flipcard-front">
+      <div class="flipcard">      
+          <div class="game__wrapper flipcard__side flipcard-front flipcard-front">
               <h1 class="heading">Noughts and Crosses</h1>
               <div class="game__choose-wrapper">
                 <div class="game__choose game__choose--active">
@@ -56,8 +52,9 @@
                 </div>
               </div>         
     
-              <div id="game-board" class="game__board game__board--inactive">
-                  <img
+              <div class="game__board game__board">
+                  <div class="game__squares-wrapper game__squares-wrapper--inactive">
+                    <img
                     id="0"
                     class="game__square"
                     src="../img/blankSquare.jpg"
@@ -111,10 +108,13 @@
                     src="../img/blankSquare.jpg"
                     alt="Noughts and crosses square"
                   />
+                  </div>
+                  
                 </div>
+              
               <p class="game__button">Start Game</p>
-            </div>
-          <div id="instructions" class="instructions flipcard-back">
+          </div>
+          <div id="instructions" class="instructions flipcard__side flipcard-back">
             
             <h1 class="heading">Instructions</h1>
            
@@ -151,16 +151,14 @@
               />
             </div>
           </div>
-        </div>
-        
-
+          <button class="flip-btn">
+            <img class="flip-btn__icon" src="img/info.svg" alt="Information icon">
+          </button>
       </div>
       
     </main>
   </body>
   <script type="text/javascript" src="Javascipt\view.js"></script>
   <script type="text/javascript" src="Javascipt\model.js"></script>
-  <script type="text/javascript" src="Javascipt\utils.js"></script> 
-  <script type="text/javascript" src="Javascipt\computer.js"></script>
   <script type="text/javascript" src="Javascipt\controller.js"></script>
 </html>

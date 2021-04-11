@@ -1,7 +1,5 @@
 const human = -1;
 const computer = +1;
-let computerShape = cross;
-let playerShape = nought;
 
 const NOUGHT_PATH = "img/noughtImage.jpg";
 const CROSS_PATH = "img/crossImage.jpg";
@@ -10,44 +8,66 @@ const BLANK_PATH = "img/blankSquare.jpg";
 const CROSS_TURN = "img/crossImageTurn.jpg";
 const NOUGHT_TURN = "img/noughtImageTurn.jpg";
 
-const gameOver = (player, state) => {
-  let playerMoves = [];
-  state.forEach((square, index) => {
-    if (square === player) {
-      playerMoves.push(index);
-    }
-  });
-
-  const winningCombinations = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  //check if playermoves contains all of one of the winning combinations
-  for (let i = 0; i < winningCombinations.length; i++) {
-    let combo = winningCombinations[i];
-    const isMatch = (num) => playerMoves.includes(num);
-    if (combo.every(isMatch)) {
-      return true;
-    }
+const gameOver = (player, board) => {
+  if (
+    (board[0] === player && board[1] === player && board[2] === player) ||
+    (board[3] === player && board[4] === player && board[5] === player) ||
+    (board[6] === player && board[7] === player && board[8] === player) ||
+    (board[0] === player && board[3] === player && board[6] === player) ||
+    (board[1] === player && board[4] === player && board[7] === player) ||
+    (board[2] === player && board[5] === player && board[8] === player) ||
+    (board[0] === player && board[4] === player && board[8] === player) ||
+    (board[2] === player && board[4] === player && board[6] === player)
+  ) {
+    return true;
+  } else {
+    return false;
   }
-
-  return false;
 };
 
-/* Function to heuristic evaluation of state. */
-const evaluateScore = (state) => {
-  if (gameOver(computer, state)) {
-    return 1;
-  } else if (gameOver(human, state)) {
-    return -1;
+const gameDraw = (board) => {
+  if (board.every((square) => square !== 0)) {
+    return true;
   }
+};
+
+const getPossibleMoves = (board) => {
+  let possibleMoves = [];
+  board.forEach((square, index) => {
+    if (square === 0) {
+      possibleMoves.push(index);
+    }
+  });
+  return possibleMoves;
+};
+
+const evaluateScore = (board) => {
+  if (gameOver(computer, board)) {
+    return 1;
+  } else if (gameOver(human, board)) {
+    return -1;
+  } else if (gameDraw(board)) {
+    return 0;
+  }
+};
+
+const minimax = (isMaxTurn, board) => {
+  if (evaluateScore(board) !== undefined) {
+    return evaluateScore(board);
+  }
+
+  let scores = [];
+  let possibleMoves = getPossibleMoves(board);
+
+  possibleMoves.forEach((move) => {
+    isMaxTurn ? (board[move] = 1) : (board[move] = -1);
+    scores.push(minimax(!isMaxTurn, board));
+    board[move] = 0;
+  });
+
+  return isMaxTurn
+    ? Math.max.apply(Math, scores)
+    : Math.min.apply(Math, scores);
 };
 
 const model = {
@@ -64,7 +84,6 @@ const model = {
   },
 
   resetBoard: () => {
-    console.log("Board being reset");
     model.state.moveCount = 0;
     model.state.gameBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     model.state.turn = "player";
@@ -77,21 +96,24 @@ const model = {
     }
   },
 
-  //decides computer turn
   compTurn: () => {
-    let square;
-    let numEmpty = 9 - model.state.moveCount;
+    let bestScore = -1000;
+    let bestMove = null;
+    let board = model.state.gameBoard;
 
-    //if first move, random choice
-    if (model.state.moveCount === 0) {
-      square = parseInt(Math.random() * 3);
-    }
-    //otherwise, call minimax algorithm to decide move
-    else {
-      square = minimax(model.state.gameBoard, numEmpty, computer);
-    }
+    let possibleMoves = getPossibleMoves(board);
 
-    makeCompMove(square[0]);
+    possibleMoves.forEach((move) => {
+      board[move] = 1;
+      let score = minimax(false, board);
+      board[move] = 0;
+      if (score > bestScore) {
+        bestScore = score;
+        bestMove = move;
+      }
+    });
+
+    makeCompMove(bestMove);
   },
 
   switchSelector: () => {
@@ -107,10 +129,8 @@ const model = {
   },
 
   checkResult: (handler) => {
-    if (evaluateScore(model.state.gameBoard)) {
+    if (evaluateScore(model.state.gameBoard) !== undefined) {
       return handler(evaluateScore(model.state.gameBoard));
-    } else if (model.state.moveCount === 9) {
-      return handler(0);
     }
   },
 
@@ -123,54 +143,6 @@ const model = {
 
 const updateTurn = (turn) => {
   model.state.turn = turn;
-};
-
-//need a way of passing in what human and comp values are
-const gameOverAll = (state) => {
-  return gameOver(human, state) || gameOver(computer, state);
-};
-
-const minimax = (state, depth, player) => {
-  let best;
-  if (player === 1) {
-    best = [-1, -1000];
-  } else {
-    best = [-1, +1000];
-  }
-
-  //returns who has won
-  if (depth === 0 || gameOverAll(state)) {
-    let score = evaluateScore(state);
-    return [-1, score];
-  }
-
-  //each valid move
-  let emptySquares = [];
-
-  state.forEach((square, index) => {
-    if (square === 0) {
-      emptySquares.push(index);
-    }
-  });
-
-  emptySquares.forEach((square) => {
-    //square is number. for them it is a cell with x and y
-
-    state[square] = player;
-    let score = minimax(state, depth - 1, -player);
-    state[square] = 0;
-    score[0] = square;
-
-    if (player === 1) {
-      if (score[1] > best[1]) {
-        best = score;
-      }
-    } else if (score[1] < best[1]) {
-      best = score;
-    }
-  });
-
-  return best;
 };
 
 const makeCompMove = (square) => {

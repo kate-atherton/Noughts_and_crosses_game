@@ -1,4 +1,7 @@
+//need to stop timeout function runnning still once player has won!
+
 const controlStart = () => {
+  console.log("resetting");
   model.resetBoard();
   view.createBoard(model.state);
   view.resetView();
@@ -18,9 +21,11 @@ const controlPlayerMove = (square) => {
 };
 
 const controlCompMove = () => {
-  model.compTurn();
-  view.createBoard(model.state);
-  model.checkResult(controlResult);
+  if (model.state.currentlyPlaying === true) {
+    model.compTurn();
+    view.createBoard(model.state);
+    model.checkResult(controlResult);
+  }
 };
 
 const controlSelector = (selector) => {
