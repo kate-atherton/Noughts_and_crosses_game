@@ -1,4 +1,3 @@
-//fix animation issue
 //restyle noughts and crosses
 //move model code into computer js file?
 

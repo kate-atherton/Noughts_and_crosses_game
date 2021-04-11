@@ -5,9 +5,6 @@ const NOUGHT_PATH = "img/noughtImage.jpg";
 const CROSS_PATH = "img/crossImage.jpg";
 const BLANK_PATH = "img/blankSquare.jpg";
 
-const CROSS_TURN = "img/crossImageTurn.jpg";
-const NOUGHT_TURN = "img/noughtImageTurn.jpg";
-
 const gameOver = (player, board) => {
   if (
     (board[0] === player && board[1] === player && board[2] === player) ||
@@ -78,8 +75,8 @@ const model = {
     computerPath: CROSS_PATH,
     playerPath: NOUGHT_PATH,
     blankPath: BLANK_PATH,
-    playerPathTurn: NOUGHT_TURN,
-    computerPathTurn: CROSS_TURN,
+    playerPathTurn: NOUGHT_PATH,
+    computerPathTurn: CROSS_PATH,
     currentlyPlaying: false,
   },
 

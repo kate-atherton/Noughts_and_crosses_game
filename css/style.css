@@ -204,7 +204,7 @@ body {
 
 .game__selector {
   margin-left: 0.75rem;
-  width: 15rem;
+  width: 5rem;
   padding: 0.5rem;
   border-radius: 1rem;
   cursor: pointer; }
@@ -339,7 +339,7 @@ body {
 
 .flipcard {
   width: 75vw;
-  max-width: 110rem;
+  max-width: 90rem;
   height: 90vh;
   max-height: 120rem;
   perspective: 6000px;
