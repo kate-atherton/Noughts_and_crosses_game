@@ -1,10 +1,25 @@
-//choose options on game reset
+//fix animation issue
 //restyle noughts and crosses
+//move model code into computer js file?
 
 const controlStart = () => {
   model.resetBoard();
   view.createBoard(model.state);
+  if (model.state.currentlyPlaying) {
+    controlReset();
+  } else {
+    controlStartGame();
+  }
+};
+
+const controlStartGame = () => {
+  model.startGame();
   view.resetView();
+};
+
+const controlReset = () => {
+  model.endGame();
+  view.revertView();
 };
 
 const controlPlayerMove = (square) => {

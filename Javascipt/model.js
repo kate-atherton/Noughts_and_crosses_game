@@ -87,7 +87,14 @@ const model = {
     model.state.moveCount = 0;
     model.state.gameBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     model.state.turn = "player";
+  },
+
+  startGame: () => {
     model.state.currentlyPlaying = true;
+  },
+
+  endGame: () => {
+    model.state.currentlyPlaying = false;
   },
 
   squareFree: (square) => {

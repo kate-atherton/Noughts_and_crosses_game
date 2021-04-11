@@ -87,6 +87,12 @@ const view = {
     }
   },
 
+  revertView: () => {
+    startButton.innerHTML = "Start";
+    shapeSelectorWrapper.classList.add("game__choose--active");
+    gameTurn.classList.remove("game__turn--active");
+  },
+
   addHandlerFlip: () => {
     flipButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
