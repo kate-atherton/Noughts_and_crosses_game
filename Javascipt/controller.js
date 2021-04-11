@@ -40,8 +40,14 @@ const controlResult = (result) => {
   view.renderResult(result);
 };
 
+const controlFlipBtn = () => {
+  model.switchFlipBtn();
+  view.renderBtn(model.state.flipBtnPath);
+};
+
 const init = () => {
-  view.addHandlerFlip();
+  view.addHandlerFlip(controlFlipBtn);
+  view.renderBtn(model.state.flipBtnPath);
   view.addHandlerSelectorClick(controlSelector);
   view.addHandlerStartClick(controlStart);
   view.addHandlerPlayerClick(controlPlayerMove);

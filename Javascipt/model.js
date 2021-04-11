@@ -8,6 +8,9 @@ const BLANK_PATH = "img/blankSquare.jpg";
 const CROSS_TURN = "img/crossImageTurn.jpg";
 const NOUGHT_TURN = "img/noughtImageTurn.jpg";
 
+const INFORMATION_PATH = "img/info.svg";
+const GAME_PATH = "img/gamepad.svg";
+
 const gameOver = (player, board) => {
   if (
     (board[0] === player && board[1] === player && board[2] === player) ||
@@ -81,6 +84,8 @@ const model = {
     playerPathTurn: NOUGHT_TURN,
     computerPathTurn: CROSS_TURN,
     currentlyPlaying: false,
+    flipBtnPath: INFORMATION_PATH,
+    inactiveFlipBtnPath: GAME_PATH,
   },
 
   resetBoard: () => {
@@ -138,6 +143,13 @@ const model = {
     model.state.gameBoard[square] = -1;
     updateTurn("computer");
     model.state.moveCount++;
+  },
+
+  switchFlipBtn: () => {
+    model.state.flipBtnPath = [
+      model.state.inactiveFlipBtnPath,
+      (model.state.inactiveFlipBtnPath = model.state.flipBtnPath),
+    ][0];
   },
 };
 
