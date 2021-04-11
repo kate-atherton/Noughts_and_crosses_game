@@ -21,7 +21,12 @@
     <main class="main">
       <div class="flipcard">      
           <div class="game__wrapper flipcard__side flipcard-front flipcard-front">
+            <header class="header">
               <h1 class="heading">Noughts and Crosses</h1>
+              <button class="flip-btn">
+                <img class="flip-btn__icon" src="img/info.svg" alt="Information icon">
+              </button>  
+            </header>             
               <div class="game__choose-wrapper">
                 <div class="game__choose game__choose--active">
                   <p class="game__choose-text">Choose your weapon</p>
@@ -114,10 +119,14 @@
               
               <p class="game__button">Start Game</p>
           </div>
-          <div id="instructions" class="instructions flipcard__side flipcard-back">
+          <div id="instructions" class="instructions flipcard__side flipcard-back">   
+            <header class="header">
+              <h1 class="heading">Instructions</h1>
+              <button class="flip-btn">
+                <img class="flip-btn__icon" src="img/gamepad.svg" alt="Game icon">
+              </button>   
+            </header>    
             
-            <h1 class="heading">Instructions</h1>
-           
             <div class="instructions__texts">
               <p class="instructions__text">
                 You can choose to play with either noughts or crosses
@@ -151,9 +160,7 @@
               />
             </div>
           </div>
-          <button class="flip-btn">
-            <img class="flip-btn__icon" src="img/info.svg" alt="Information icon">
-          </button>      
+             
       </div>
       
     </main>

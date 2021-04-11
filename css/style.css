@@ -152,26 +152,33 @@ body {
   justify-content: center;
   align-items: center; }
 
-.heading {
+.header {
   background-color: #243656;
+  width: 100%;
+  align-self: stretch;
+  justify-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; }
+
+.heading {
   width: 100%;
   color: white;
   font-size: 3rem;
   text-align: center;
-  padding: 2.5rem;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+  padding: 2.5rem; }
 
 .flip-btn {
   position: absolute;
   right: 2%;
-  top: 2%; }
+  top: 10%;
+  transition: all 0.2s ease-in-out; }
   .flip-btn__icon {
     width: 4rem; }
   .flip-btn:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    transform: scale(1.1); }
 
 .game__wrapper {
   display: grid;

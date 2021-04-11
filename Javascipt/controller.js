@@ -1,7 +1,7 @@
-//need to stop timeout function runnning still once player has won!
+//choose options on game reset
+//restyle noughts and crosses
 
 const controlStart = () => {
-  console.log("resetting");
   model.resetBoard();
   view.createBoard(model.state);
   view.resetView();
@@ -40,14 +40,8 @@ const controlResult = (result) => {
   view.renderResult(result);
 };
 
-const controlFlipBtn = () => {
-  model.switchFlipBtn();
-  view.renderBtn(model.state.flipBtnPath);
-};
-
 const init = () => {
-  view.addHandlerFlip(controlFlipBtn);
-  view.renderBtn(model.state.flipBtnPath);
+  view.addHandlerFlip();
   view.addHandlerSelectorClick(controlSelector);
   view.addHandlerStartClick(controlStart);
   view.addHandlerPlayerClick(controlPlayerMove);
