@@ -128,7 +128,7 @@ button {
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
-  @media only screen and (max-width: 56.3em) {
+  @media only screen and (max-width: 62.5em) {
     html {
       font-size: 55%; } }
   @media only screen and (max-width: 37.5em) {
@@ -138,11 +138,10 @@ html {
 
 body {
   font-family: "Nunito", sans-serif;
-  color: var(color-grey-dark-2);
   font-weight: 300;
   line-height: 1.6;
   font-family: var(--font-primary);
-  color: var(--color-grey-dark-1); }
+  color: #ffffff; }
 
 .main {
   background: -webkit-linear-gradient(to right bottom #405475, #427380);
@@ -154,7 +153,6 @@ body {
 
 .header {
   background-color: #243656;
-  width: 100%;
   align-self: stretch;
   justify-self: stretch;
   display: flex;
@@ -163,11 +161,7 @@ body {
   position: relative; }
 
 .heading {
-  width: 100%;
-  color: white;
-  font-size: 3rem;
-  text-align: center;
-  padding: 2.5rem; }
+  font-size: 3rem; }
 
 .flip-btn {
   position: absolute;
@@ -183,6 +177,7 @@ body {
 .game__wrapper {
   display: grid;
   grid-template-rows: 15% 13% 57% 15%;
+  grid-template-columns: 100%;
   justify-items: center;
   align-items: center; }
 
@@ -284,14 +279,13 @@ body {
   font-size: 2rem;
   background-color: var(--color-primary);
   padding: 1rem 2rem;
-  color: white;
   border-radius: 1rem;
   animation: messageAppear 0.2s ease-out; }
 
 .instructions {
-  color: white;
   display: grid;
   grid-template-rows: 15% 42.5% 42.5%;
+  grid-template-columns: 100%;
   justify-items: center;
   align-items: center; }
   .instructions__header {
@@ -302,9 +296,6 @@ body {
     width: 3rem;
     padding: 0 0.5rem;
     fill: white; }
-  .instructions__texts {
-    width: 80rem;
-    max-width: 100%; }
   .instructions__text {
     text-align: center;
     font-size: 2rem;
@@ -349,12 +340,12 @@ body {
     background-color: #1e2e4b;
     transition: all 0.8s ease;
     position: absolute;
-    text-align: center;
     transform-style: preserve-3d;
     box-shadow: var(--shadow-dark);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    overflow: hidden; }
+    overflow: hidden;
+    border-radius: 2rem; }
   .flipcard-front, .flipcard-back {
     width: 100%;
     height: 100%; }
@@ -364,7 +355,11 @@ body {
     transform: rotateY(180deg); }
     .flipcard-back--active {
       transform: rotateY(0deg); }
-  @media only screen and (max-width: 56.3em) {
+  @media only screen and (max-width: 62.5em) {
     .flipcard {
       width: 100%;
-      height: 100vh; } }
+      max-width: 100%;
+      height: 100vh;
+      max-height: 100%; }
+      .flipcard__side {
+        border-radius: 0; } }

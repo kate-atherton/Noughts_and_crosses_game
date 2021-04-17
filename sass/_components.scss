@@ -1,6 +1,5 @@
 .header {
   background-color: rgb(36, 54, 86);
-  width: 100%;
   align-self: stretch;
   justify-self: stretch;
   display: flex;
@@ -10,11 +9,7 @@
 }
 
 .heading {
-  width: 100%;
-  color: white;
   font-size: 3rem;
-  text-align: center;
-  padding: 2.5rem;
 }
 
 .flip-btn {

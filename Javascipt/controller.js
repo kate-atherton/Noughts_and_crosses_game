@@ -1,5 +1,4 @@
-//restyle noughts and crosses
-//move model code into computer js file?
+//re-factor css, add more accessible tags, rename if necessary
 
 const controlStart = () => {
   model.resetBoard();

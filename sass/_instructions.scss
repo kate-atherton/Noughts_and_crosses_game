@@ -1,7 +1,7 @@
 .instructions {
-  color: white;
   display: grid;
   grid-template-rows: 15% 42.5% 42.5%;
+  grid-template-columns: 100%;
   justify-items: center;
   align-items: center;
 
@@ -15,11 +15,6 @@
     width: 3rem;
     padding: 0 0.5rem;
     fill: white;
-  }
-
-  &__texts {
-    width: 80rem;
-    max-width: 100%;
   }
 
   &__text {
