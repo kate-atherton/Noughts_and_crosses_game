@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" href="img/verticalWin.JPG" type="image/png"/>
+    <link rel="icon" href="img/crossImage.jpg" type="image/png"/>
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
@@ -14,112 +14,117 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap"
       rel="stylesheet"
     />
-
     <title>Noughts and Crosses</title>
   </head>
   <body>
     <main class="main">
       <div class="flipcard">      
-          <div class="game__wrapper flipcard__side flipcard-front flipcard-front">
+          <section class="game__wrapper flipcard__side flipcard__front">
+
             <header class="header">
               <h1 class="heading">Noughts and Crosses</h1>
               <button class="flip-btn">
                 <img class="flip-btn__icon" src="img/info.svg" alt="Information icon">
               </button>  
-            </header>             
-              <div class="game__choose-wrapper">
-                <div class="game__choose game__choose--active">
-                  <p class="game__choose-text">Choose your weapon</p>
-                  <div class="game__selectors">
-                    <img
+            </header>      
+
+
+              <div class="game__choose game__choose--active">
+                <p class="game__choose-text">Choose your weapon</p>
+                <div class="game__selectors">
+                  <img
                       id="nought"
                       class="game__selector game__selector--active"
                       src="../img/noughtImage.jpg"
                       alt="Nought image"
-                    />
+                  />
                     <img
                       id="cross"
                       class="game__selector"
                       src="../img/crossImage.jpg"
                       alt="Cross image"
                     />
-                  </div>
                 </div>
-                <div class="game__turn">
-                  <img
+              </div>
+
+
+              <div class="game__turn">
+                <img
                     id="turn-image"
                     class="game__turn-image"
                     ,
                     src="../img/noughtImage.jpg"
                     alt="Nought image"
-                  />
-                  <p class="game__turn-text">Turn</p>
-                </div>
-              </div>         
+                />
+                <p class="game__turn-text">Turn</p>
+              </div>
+                    
     
-              <div class="game__board game__board">
-                  <div class="game__squares-wrapper game__squares-wrapper--inactive">
-                    <img
-                    id="0"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="1"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="2"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="3"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="4"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="5"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="6"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="7"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  <img
-                    id="8"
-                    class="game__square"
-                    src="../img/blankSquare.jpg"
-                    alt="Noughts and crosses square"
-                  />
-                  </div>
-                  
-                </div>
-              
-              <p class="game__button">Start Game</p>
-          </div>
-          <div id="instructions" class="instructions flipcard__side flipcard-back">   
+            <div class="game__board game__board">
+              <div class="game__squares-wrapper game__squares-wrapper--inactive">
+                <img
+                  id="0"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="1"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="2"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="3"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="4"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="5"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="6"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="7"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+                <img
+                  id="8"
+                  class="game__square"
+                  src="../img/blankSquare.jpg"
+                  alt="Noughts and crosses square"
+                />
+              </div>              
+            </div>   
+
+            <p class="game__button">Start Game</p>
+            
+          </section>
+
+          <section class="instructions flipcard__side flipcard__back"> 
+
             <header class="header">
               <h1 class="heading">Instructions</h1>
               <button class="flip-btn">
@@ -142,27 +147,27 @@
                 The following examples display X winning in three different ways:
               </p>
             </div>
-            <div class="instructions__examples">
+
+            <div class="instructions__examples-wrapper">
               <img
                 class="instructions__example"
                 src="../img/horizontalWin.JPG"
-                alt="image of horizontal win"
+                alt="Horizontal win example"
               />
               <img
                 class="instructions__example"
                 src="../img/verticalWin.JPG"
-                alt="image of vertical win"
+                alt="Vertical win example"
               />
               <img
                 class="instructions__example"
                 src="../img/diagonalWin.JPG"
-                alt="image of diagonal win"
+                alt="Diagonal win example"
               />
             </div>
-          </div>
-             
+
+          </section>            
       </div>
-      
     </main>
   </body>
   <script type="text/javascript" src="Javascipt\view.js"></script>

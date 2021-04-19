@@ -10,8 +10,8 @@ const gameTurnImage = document.querySelector(".game__turn-image");
 const NOUGHT_PATH_TURN = "img/noughtImageTurn.jpg";
 const CROSS_PATH_TURN = "img/crossImageTurn.jpg";
 const flipButtons = document.querySelectorAll(".flip-btn");
-const flipCardFront = document.querySelector(".flipcard-front");
-const flipCardBack = document.querySelector(".flipcard-back");
+const flipCardFront = document.querySelector(".flipcard__front");
+const flipCardBack = document.querySelector(".flipcard__back");
 let resultMessage;
 
 const view = {
@@ -96,8 +96,8 @@ const view = {
   addHandlerFlip: () => {
     flipButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        flipCardFront.classList.toggle("flipcard-front--active");
-        flipCardBack.classList.toggle("flipcard-back--active");
+        flipCardFront.classList.toggle("flipcard__front--active");
+        flipCardBack.classList.toggle("flipcard__back--active");
       });
     });
   },

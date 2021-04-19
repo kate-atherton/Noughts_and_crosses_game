@@ -316,7 +316,7 @@ body {
           mask-image: url(../img/SVG/chevron-thin-right.svg);
           mask-size: cover;
           background-image: none; } }
-  .instructions__examples {
+  .instructions__examples-wrapper {
     align-self: start;
     padding: 2rem;
     display: flex;
@@ -346,14 +346,14 @@ body {
     backface-visibility: hidden;
     overflow: hidden;
     border-radius: 2rem; }
-  .flipcard-front, .flipcard-back {
+  .flipcard__front, .flipcard__back {
     width: 100%;
     height: 100%; }
-  .flipcard-front--active {
+  .flipcard__front--active {
     transform: rotateY(-180deg); }
-  .flipcard-back {
+  .flipcard__back {
     transform: rotateY(180deg); }
-    .flipcard-back--active {
+    .flipcard__back--active {
       transform: rotateY(0deg); }
   @media only screen and (max-width: 62.5em) {
     .flipcard {

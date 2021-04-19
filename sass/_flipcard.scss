@@ -19,19 +19,19 @@
     border-radius: 2rem;
   }
 
-  &-front,
-  &-back {
+  &__front,
+  &__back {
     width: 100%;
     height: 100%;
   }
 
-  &-front {
+  &__front {
     &--active {
       transform: rotateY(-180deg);
     }
   }
 
-  &-back {
+  &__back {
     transform: rotateY(180deg);
 
     &--active {
