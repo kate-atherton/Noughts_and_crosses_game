@@ -13,19 +13,16 @@
     &--active {
       display: flex;
       align-items: center;
-      justify-content: center;
     }
   }
 
   &__choose-text {
-    color: white;
     padding: 0.5rem;
     font-size: 2rem;
   }
 
   &__selectors {
     padding: 0 1rem;
-    cursor: auto;
   }
 
   &__selector {
@@ -38,6 +35,7 @@
     &--active {
       cursor: auto;
       border-bottom: 2px solid #fff;
+      transform: translate(1.1);
     }
   }
 
@@ -47,7 +45,6 @@
     &--active {
       display: flex;
       align-items: center;
-      padding: 0.5rem;
     }
   }
 
@@ -59,26 +56,20 @@
   &__turn-text {
     margin-left: 0.5rem;
     font-size: 2rem;
-    color: white;
   }
 
   &__board {
-    height: 100%;
     position: relative;
-    justify-items: stretch;
-    align-items: stretch;
   }
 
   &__squares-wrapper {
     display: grid;
-    grid-template: repeat(3, calc(33% - 0.33rem)) / repeat(
-        3,
-        calc(33% - 0.33rem)
-      );
+    height: min-content;
+    width: min-content;
+    grid-template: repeat(3, 11rem) / repeat(3, 11rem);
     grid-gap: 1rem;
     cursor: pointer;
     background-color: #38b99f;
-    height: 100%;
 
     &--inactive {
       opacity: 0.2;
@@ -87,27 +78,22 @@
 
   &__square {
     height: 100%;
+    width: 100%;
   }
 
   &__button {
     width: 25rem;
-    background-color: #243656;
+    background-color: $color-secondary;
     padding: 1rem 2rem;
     border-radius: 1rem;
-    color: white;
     font-size: 2rem;
     text-transform: uppercase;
-    box-shadow: var(--shadow-dark);
+    box-shadow: $shadow-dark;
     text-align: center;
-    transition: all 0.2s;
+    transition: all 0.3s;
 
     &:hover {
-      background-color: var(--color-primary);
-      cursor: pointer;
-    }
-
-    &:active {
-      background-color: var(--color-primary);
+      background-color: $color-primary-dark;
       cursor: pointer;
     }
   }
@@ -132,9 +118,15 @@
     text-align: center;
     width: 30rem;
     font-size: 2rem;
-    background-color: var(--color-primary);
+    background-color: $color-primary-dark;
     padding: 1rem 2rem;
     border-radius: 1rem;
     animation: messageAppear 0.2s ease-out;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    &__board {
+      padding: 3rem;
+    }
   }
 }
