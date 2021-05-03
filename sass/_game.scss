@@ -92,9 +92,11 @@
     text-align: center;
     transition: all 0.3s;
 
-    &:hover {
-      background-color: $color-primary-dark;
-      cursor: pointer;
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-primary-dark;
+        cursor: pointer;
+      }
     }
   }
 
