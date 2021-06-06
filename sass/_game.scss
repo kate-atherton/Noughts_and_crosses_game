@@ -100,17 +100,6 @@
     }
   }
 
-  @keyframes messageAppear {
-    0% {
-      width: 0;
-      height: 0;
-      font-size: 0;
-    }
-    100% {
-      width: 30rem;
-    }
-  }
-
   &__message {
     opacity: 1;
     position: absolute;
@@ -130,5 +119,16 @@
     &__board {
       padding: 3rem;
     }
+  }
+}
+
+@keyframes messageAppear {
+  0% {
+    width: 0;
+    height: 0;
+    font-size: 0;
+  }
+  100% {
+    width: 30rem;
   }
 }
