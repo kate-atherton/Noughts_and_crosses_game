@@ -27,18 +27,4 @@ This will start a webpack dev-server that will be available on localhost:8080
 
 ### Deployment
 
-Site is deployed on github pages from the gh-pages branch.
-
-Ensure
-
-To redeploy:
-
-```git checkout gh-pages
-git checkout -b gh-pages
-git merge master
-npm run build:css
-git add .
-git commit -m "Builds latest version"
-git push origin gh-pages
-git checkout main
-```
+Site is deployed on Github. Code pushed to Github is continuously deployed
